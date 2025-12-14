@@ -105,8 +105,9 @@ public class AuxMetods {
 			esCorrecto = true;
 			System.out.printf("\n\n\t------> %s <<<<<<------\n\n", titulo);
 			
-			for (int i = 0; i < opciones.length; i++) 
-				System.out.printf("\t\t%d.- %s.\n", i + 1, opciones[i]);
+			for (int i = 1; i < opciones.length; i++) 
+				System.out.printf("\t\t%d.- %s.\n", i, opciones[i]);
+			System.out.printf("\t\t0.- %s.\n", opciones[0]);
 			
 			System.out.printf("\n\t·····> %s: ", peticion);
 			
@@ -116,7 +117,7 @@ public class AuxMetods {
 				
 				opcionSeleccionada = Integer.parseInt(MainObjetos4.entrada);
 				
-				if ((opcionSeleccionada < 1) || (opcionSeleccionada > opciones.length)) {
+				if ((opcionSeleccionada < 0) || (opcionSeleccionada > opciones.length)) {
 					System.out.println("\t-------> Error: opción incorrecta...");
 					esCorrecto = false;
 				}
@@ -127,7 +128,7 @@ public class AuxMetods {
 			
 		} while (!esCorrecto);
 		
-		return (opcionSeleccionada - 1);
+		return (opcionSeleccionada);
 	}
 	
 }
