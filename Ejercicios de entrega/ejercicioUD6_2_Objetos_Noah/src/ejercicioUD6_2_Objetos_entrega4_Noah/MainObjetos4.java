@@ -15,11 +15,20 @@ import java.util.Scanner;
 *	Las otras opciones no se piden.
 */
 
+
+/**
+ * Esta clase contiene las opciones 1 y 2 del ejercicio 7 de la entrega 4/4 de objetos.
+ */
 public class MainObjetos4 {
 
 	public static String entrada = "";
 	public static Scanner teclado = new Scanner(System.in);
 	
+	/**
+	 * Este método es el núcleo del programa, que muestra un menú, y actualiza la información que tiene conforme a las
+	 * operaciones que realiza el usuario.
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
 		int		opcion = 0;
@@ -34,6 +43,12 @@ public class MainObjetos4 {
 		teclado.close();
 	}
 
+	/**
+	 * Este método muestra un menú principal y ejecuta según lo indica el usuario por teclado.
+	 * @param opcion - opcion seleccionada por el usuario
+	 * @param alumnos - array de objetos clase Alumno, ocn información ya cargada o no.
+	 * @return alumnos - el mismo array, o modificado
+	 */
 	private static Alumno[] ejecutarOperacion(int opcion, Alumno alumnos[]) {
 		
 		int		datos[] = new int[2];//no se muestra en las opciones 1 y 2, asi que tecnicamente no se usa
@@ -58,7 +73,11 @@ public class MainObjetos4 {
 		return (alumnos);
 	}
 	
-	
+	/**
+	 * Este método pregunta al usuario cuántos alumnos son, y pide los datos de cada uno de ellos,
+	 * para cargarlos en cada objeto de clase Alumno.
+	 * @return alumnos - array de n Alumnos con toda la información validada
+	 */
 	private static Alumno[] cargarDatosAlumnos() {
 		
 		Alumno alumnos[];
@@ -111,17 +130,32 @@ public class MainObjetos4 {
 		return (alumnos);
 	}
 	
+	/**
+	 * Este método recibe un array de objetos Alumno y analiza algunos atributos (sexo, altura, edad...) para
+	 * generar unos datos estadísticos.
+	 * @param alumnos - Array de objetos Alumno previamente cargados
+	 * @return datos - array de 2 int con la información generada 
+	 */
 	private static int[] procesarLosDatos(Alumno alumnos[]) {
-		int		edadH = 0, numHombres = 0, totalEdades = 0;
+	
+		int		numHombres = 0, totalEdades = 0;
 		int		altos = 0;
-		String	sexo;
+		String	sexo = "";
+		int		datos[] = new int[2];
+		
 		for (int i = 0; i < alumnos.length; i++) {
 			sexo = alumnos[i].getSexo();
 			if (sexo == "H") {
 				numHombres++;
-				edadH += alumnos[i].getEdad();
+				totalEdades += alumnos[i].getEdad();
 			}
+			if (alumnos[i].getAltura() > 1.65)
+				altos++;
 		}
+		datos[0] = totalEdades /numHombres;
+		datos[1] = altos;
+		
+		return (datos);
 	}
 	
 	/**
