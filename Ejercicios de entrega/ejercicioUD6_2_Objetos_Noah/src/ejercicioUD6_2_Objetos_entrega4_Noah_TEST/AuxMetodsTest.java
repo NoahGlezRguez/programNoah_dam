@@ -6,6 +6,7 @@ import org.junit.Test;
 
 import ejercicioUD6_2_Objetos_entrega4_Noah.AuxMetods;
 
+//solo testeo estos dos metodos porque son aquellos donde no interviene el teclado o son metodos publicos...
 class AuxMetodsTest {
 	int numero;
 	@Test
