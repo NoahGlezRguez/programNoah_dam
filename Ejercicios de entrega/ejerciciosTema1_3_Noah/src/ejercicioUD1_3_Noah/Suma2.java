@@ -1,4 +1,4 @@
-package ejerciciosTema1_3_Noah;
+package ejercicioUD1_3_Noah;
 
 public class Suma2 {
 
