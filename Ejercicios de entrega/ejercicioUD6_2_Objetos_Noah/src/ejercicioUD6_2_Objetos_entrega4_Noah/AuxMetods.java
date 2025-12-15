@@ -10,12 +10,15 @@ public class AuxMetods {
 	public static boolean checkSoloNumeroPositivoEntero(String entrada) {
 		
 		boolean esCorrecto = true;
-
-		for (int i = 0; i < entrada.length(); i++) {
-			if (i == 0 && entrada.charAt(i) == '+')
-				i++;
-			if (!Character.isDigit(entrada.charAt(i)))
-				esCorrecto = false;
+		if (entrada == "" || entrada == null)
+			esCorrecto = false;
+		else {
+			for (int i = 0; i < entrada.length(); i++) {
+				if (i == 0 && entrada.charAt(i) == '+')
+					i++;
+				if (!Character.isDigit(entrada.charAt(i)))
+					esCorrecto = false;
+			}
 		}
 		
 		if (!esCorrecto)
@@ -55,8 +58,13 @@ public class AuxMetods {
 		boolean	hayNums = false;
 		int		numPuntos = 0;
 
+		if (entrada == null)
+			return (false);
+		
 		for (int i = 0; i < entrada.length(); i++) {
 			
+			if (i == 0 && entrada.charAt(i) == '+' || entrada.charAt(i) == '-')
+				i++;
 			if (Character.isDigit(entrada.charAt(i)))
 				hayNums = true;
 			

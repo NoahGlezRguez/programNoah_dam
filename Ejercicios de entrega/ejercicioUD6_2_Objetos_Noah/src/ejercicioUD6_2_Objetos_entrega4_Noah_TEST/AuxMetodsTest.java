@@ -7,12 +7,12 @@ import org.junit.Test;
 import ejercicioUD6_2_Objetos_entrega4_Noah.AuxMetods;
 
 //solo testeo estos dos metodos porque son aquellos donde no interviene el teclado o son metodos publicos...
-class AuxMetodsTest {
+public class AuxMetodsTest {
 	int numero;
 	@Test
-	void testCheckSoloNumeroPositivoEntero() {
+	public void testCheckSoloNumeroPositivoEntero() {
 		
-		String	aptos[] = {"123", "-654", "+55",	"789456123456"};	
+		String	aptos[] = {"123", "654", "+55",	"789456123456", "0"};	
 		
 		String	noAptos[] = {"textoTexto", "3.3", "", null};
 		
@@ -20,8 +20,10 @@ class AuxMetodsTest {
 	
 		for (int i = 0; i < noAptos.length; i++) {
 			resultadoTesteo = AuxMetods.checkSoloNumeroPositivoEntero(noAptos[i]);
-			if (resultadoTesteo == true)
+			if (resultadoTesteo == true) {
 				fail("Admitió algo que no era un número entero");
+				System.out.printf("%s\n", noAptos[i]);
+			}
 			
 		}
 		
@@ -40,7 +42,7 @@ class AuxMetodsTest {
 	}*/
 
 	@Test
-	void testCheckSoloNumeroDecimal() {
+	public void testCheckSoloNumeroDecimal() {
 		
 		String	aptos[] = {"12.3", "-6.54", "+5.5",	"78945612.3456", "1", ".3", "2."};	
 		
