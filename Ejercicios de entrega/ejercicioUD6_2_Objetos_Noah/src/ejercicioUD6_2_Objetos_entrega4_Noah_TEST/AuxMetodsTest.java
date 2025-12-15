@@ -31,22 +31,40 @@ class AuxMetodsTest {
 				fail("No admitió algo que era un número entero");
 		}
 		
-		fail("Not yet implemented");
 	}
 
-	@Test
-	void testPintarLinea() {
+	//@Test no se testea porque es solamente imprimir
+	/*void testPintarLinea() {
 		fail("Not yet implemented");
-	}
+	}*/
 
 	@Test
 	void testCheckSoloNumeroDecimal() {
-		fail("Not yet implemented");
+		
+		String	aptos[] = {"12.3", "-6.54", "+5.5",	"78945612.3456", "1", ".3", "2."};	
+		
+		String	noAptos[] = {"textoTexto", "3.3.", "", ".", "..", "11o", "", null};
+		
+		boolean		resultadoTesteo;
+	
+		for (int i = 0; i < noAptos.length; i++) {
+			resultadoTesteo = AuxMetods.checkSoloNumeroDecimal(noAptos[i]);
+			if (resultadoTesteo == true)
+				fail("Admitió algo que no era un número decimal");
+			
+		}
+		
+		for (int i = 0; i < aptos.length; i++) {
+			resultadoTesteo = AuxMetods.checkSoloNumeroDecimal(aptos[i]);
+			
+			if (resultadoTesteo == false)
+				fail("No admitió algo que era un número decimal");
+		}
 	}
 
-	@Test
-	void testMenuOpciones() {
+	//@Test no se testea por intervenir el teclado creo
+	/*void testMenuOpciones() {
 		fail("Not yet implemented");
-	}
+	}*/
 
 }
