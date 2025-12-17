@@ -2,75 +2,75 @@ package ejercicioUD8_1_Ficheros_Noah;
 
 public class Mensaje {
 
-	private static String	remitente = null;
-	private static String	destinatario = null;
-	private static String	fecha = null;
-	private static String	hora = null;
-	private static String	asunto = null;
-	private static String	contenido = null;
+	private String	remitente = null;
+	private String	destinatario = null;
+	private String	fecha = null;
+	private String	hora = null;
+	private String	asunto = null;
+	private String	contenido = null;
 	
 	
 	public Mensaje() {
 		
 	}
 		
-	public static String getRemitente() {
+	public String getRemitente() {
 		return remitente;
 	}
 
 
-	public static void setRemitente(String remitente) {
-		Mensaje.remitente = remitente;
+	public void setRemitente(String remitente) {
+		this.remitente = remitente;
 	}
 
 
-	public static String getDestinatario() {
+	public String getDestinatario() {
 		return destinatario;
 	}
 
 
-	public static void setDestinatario(String destinatario) {
-		Mensaje.destinatario = destinatario;
+	public void setDestinatario(String destinatario) {
+		this.destinatario = destinatario;
 	}
 
 
-	public static String getFecha() {
+	public String getFecha() {
 		return fecha;
 	}
 
 
-	public static void setFecha(String fecha) {
-		Mensaje.fecha = fecha;
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
 	}
 
 
-	public static String getHora() {
+	public String getHora() {
 		return hora;
 	}
 
 
-	public static void setHora(String hora) {
-		Mensaje.hora = hora;
+	public void setHora(String hora) {
+		this.hora = hora;
 	}
 
 
-	public static String getAsunto() {
+	public String getAsunto() {
 		return asunto;
 	}
 
 
-	public static void setAsunto(String asunto) {
-		Mensaje.asunto = asunto;
+	public void setAsunto(String asunto) {
+		this.asunto = asunto;
 	}
 
 
-	public static String getContenido() {
+	public String getContenido() {
 		return contenido;
 	}
 
 
-	public static void setContenido(String contenido) {
-		Mensaje.contenido = contenido;
+	public void setContenido(String contenido) {
+		this.contenido = contenido;
 	}
 
 }

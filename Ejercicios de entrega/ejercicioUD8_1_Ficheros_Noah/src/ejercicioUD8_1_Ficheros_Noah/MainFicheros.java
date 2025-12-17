@@ -24,25 +24,25 @@ public class MainFicheros {
 			switch (opc) {
 				case 0:
 					MetodAux.pintarLinea("~", 71);
-					System.out.println("\n\t...\n");
+					System.out.println("\n\tCargando datos...\n");
 					//EjecutarEjercicio1.ejercicio1();
 					MetodAux.pintarLinea("~", 71);
 					break;
 				case 1:
 					MetodAux.pintarLinea("~", 71);
-					System.out.println("\n\t...\n");
+					System.out.println("\n\tGuardando datos...\n");
 					//EjecutarEjercicio2.ejercicio2();
 					MetodAux.pintarLinea("~", 71);
 					break;
 				case 2:
 					MetodAux.pintarLinea("~", 71);
-					System.out.println("\n\t...\n");
+					System.out.println("\n\tAñadiendo mensaje...\n");
 					//EjecutarEjercicio1.ejercicio1();
 					MetodAux.pintarLinea("~", 71);
 					break;
 				case 3:
 					MetodAux.pintarLinea("~", 71);
-					System.out.println("\n\t...\n");
+					System.out.println("\n\tImprimiendo mensajes...\n");
 					//EjecutarEjercicio2.ejercicio2();
 					MetodAux.pintarLinea("~", 71);
 					break;

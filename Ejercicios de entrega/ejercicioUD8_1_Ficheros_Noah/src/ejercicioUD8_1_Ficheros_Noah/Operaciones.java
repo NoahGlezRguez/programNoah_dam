@@ -2,31 +2,55 @@ package ejercicioUD8_1_Ficheros_Noah;
 
 public class Operaciones {
 
+	public static Mensaje[] añadirMensaje(Mensaje mensajes[]) {
+		
+		Mensaje mensajesActualizados[] = null;
+		
+		if (mensajes == null) {
+			mensajes = new Mensaje[1];
+			pedirMensaje(mensajes[0]);
+		}
+		else {
+			mensajesActualizados = new Mensaje[mensajes.length + 1];
+			mensajesActualizados = copiarMensajes(mensajes, mensajesActualizados);
+			mensajesActualizados[mensajes.length] = new Mensaje();
+			pedirMensaje(mensajesActualizados[mensajes.length]);
+		}
+		return (mensajes);
+	}
 	
-	public static Mensaje pedirMensaje(Mensaje mensajeNuevo) {
+	public static Mensaje[] copiarMensajes(Mensaje mensajes[], Mensaje mensajesActualizados[]) {
 		
+		for (int i = 0; i < mensajes.length; i++) {
+			mensajesActualizados[i] = new Mensaje();
+			mensajesActualizados[i] = mensajes[i];
+		}
 		
-		mensajeNuevo.setRemitente(pedirDato(0));
-		mensajeNuevo.destinatario = pedirDato(1);
-		mensajeNuevo.fecha = pedirDato(2);
-		mensajeNuevo.hora = pedirDato(3);
-		mensajeNuevo.asunto = pedirDato(4);
-		mensajeNuevo.contenido = pedirDato(5);
+		return (mensajesActualizados);
+	}
+			
+	public static void pedirMensaje(Mensaje mensajeNuevo) {
 		
-		return (mensajeNuevo);
+		pedirDato(0);
+		mensajeNuevo.setRemitente(MainFicheros.teclado.nextLine().trim());
+		pedirDato(1);
+		mensajeNuevo.setDestinatario(MainFicheros.teclado.nextLine().trim());
+		pedirDato(2);
+		mensajeNuevo.setFecha(MainFicheros.teclado.nextLine().trim());
+		pedirDato(3);
+		mensajeNuevo.setHora(MainFicheros.teclado.nextLine().trim());
+		pedirDato(4);
+		mensajeNuevo.setAsunto(MainFicheros.teclado.nextLine().trim());
+		pedirDato(5);
+		mensajeNuevo.setContenido(MainFicheros.teclado.nextLine().trim());
+
 	}
 	
 
-	public static String pedirDato(int dato) {
+	public static void pedirDato(int indice) {
 		
 		String datos[] = {"remitente", "destinatario", "fecha", "hora", "asunto", "contenido"};		
 		
-		/*Mensaje.remitente = pedirDato("remitente");
-		Mensaje.destinatario = pedirDato("destinatario");
-		Mensaje.fecha = pedirDato("fecha");
-		Mensaje.hora = pedirDato("hora");
-		Mensaje.asunto = pedirDato("asunto");
-		Mensaje.contenido = pedirDato("contenido");*/
-		return ("");
+		System.out.printf("\n\t- Ingrese %-15s: ", datos[indice]);
 	}
 }
