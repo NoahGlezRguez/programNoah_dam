@@ -1,8 +1,8 @@
 package ejercicioUD8_1_Ficheros_Noah;
 
-public class Operaciones {
+public class NuevoMensaje {
 
-	public static Mensaje[] añadirMensaje(Mensaje mensajes[]) {
+	public static void añadirMensaje(Mensaje mensajes[]) {
 		
 		Mensaje mensajesActualizados[] = null;
 		
@@ -12,21 +12,19 @@ public class Operaciones {
 		}
 		else {
 			mensajesActualizados = new Mensaje[mensajes.length + 1];
-			mensajesActualizados = copiarMensajes(mensajes, mensajesActualizados);
+			copiarMensajes(mensajes, mensajesActualizados);
 			mensajesActualizados[mensajes.length] = new Mensaje();
 			pedirMensaje(mensajesActualizados[mensajes.length]);
 		}
-		return (mensajes);
 	}
 	
-	public static Mensaje[] copiarMensajes(Mensaje mensajes[], Mensaje mensajesActualizados[]) {
+	public static void copiarMensajes(Mensaje mensajes[], Mensaje mensajesActualizados[]) {
 		
 		for (int i = 0; i < mensajes.length; i++) {
 			mensajesActualizados[i] = new Mensaje();
 			mensajesActualizados[i] = mensajes[i];
 		}
-		
-		return (mensajesActualizados);
+
 	}
 			
 	public static void pedirMensaje(Mensaje mensajeNuevo) {
