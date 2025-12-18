@@ -1,6 +1,5 @@
 package ejercicioUD8_1_Ficheros_Noah;
 
-import java.io.*;
 import java.util.Scanner;
 
 public class MainFicheros {
@@ -26,7 +25,7 @@ public class MainFicheros {
 
 				case 0:
 					System.out.println("\n\tCargando datos...\n");
-					mensajes = CargarMensajes.recuperarDatos("mensajes.txt");
+					mensajes = CargarMensajes.recuperarDatos(mensajes, "mensajes.txt");
 					
 					/*1.- con arrays de objetos
 					 * se mostrara numero total de mensajes cargados (se pueden cargar
@@ -50,8 +49,8 @@ public class MainFicheros {
 						System.out.println("\n\t- No hay mensajes que mostrar...\n");
 					else {
 						System.out.println("\n\tImprimiendo mensajes...\n");
-						System.out.printf("%15s%15s%10s%10s%20s%40s", "De", "Para", "Fecha", "Hora", "Asunto", "Contenido");
-						MetodAux.pintarLinea("-", 110);
+						System.out.printf("%15s%15s%20s%10s%40s%40s", "De", "Para", "Fecha", "Hora", "Asunto", "Contenido");
+						MetodAux.pintarLinea("-", 170);
 						for (int i = 0; i < mensajes.length; i++)
 							mensajes[i].imprimirMensaje();
 					}

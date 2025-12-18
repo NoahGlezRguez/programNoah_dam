@@ -23,7 +23,7 @@ public class Mensaje {
 		
 	}
 	public void imprimirMensaje() {
-		System.out.printf("%15s%15s%10s%10s%20s%40s\n", remitente, destinatario, fecha, hora, asunto, contenido);
+		System.out.printf("%15s%15s%20s%10s%40s\t%40s\n", remitente, destinatario, fecha, hora, asunto, contenido);
 	}
 	
 	public String getRemitente() {

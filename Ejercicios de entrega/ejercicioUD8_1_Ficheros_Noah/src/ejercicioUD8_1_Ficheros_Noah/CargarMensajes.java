@@ -6,15 +6,17 @@ public class CargarMensajes {
 
 	
 	
-	public static Mensaje[] recuperarDatos(String rutaFichero) {
+	public static Mensaje[] recuperarDatos(Mensaje mensajes[], String rutaFichero) {
 		
 		FileReader		lector;
 		BufferedReader	bufLector;
 		String			msg;
 		
-		Mensaje mensajes[] = null;
+		Mensaje msgsFichero[] = null;
 		int		numMensajes =  0, idx = 0;
 		String	lineasFichero[];
+		Mensaje mensajesTotalesMemoria[];
+		int		numTotalMsg = 0;
 		
 		try {
 			lector = new FileReader(rutaFichero);
@@ -58,37 +60,49 @@ public class CargarMensajes {
 		
 		if (numMensajes > 0) {
 			
-			mensajes = new Mensaje[numMensajes];
-			mensajes = transformarLineas(lineasFichero, mensajes);
-			
+			msgsFichero = new Mensaje[numMensajes];
+			msgsFichero = transformarLineas(lineasFichero, msgsFichero);	
 		}
+		if (mensajes == null)
+			return(msgsFichero);
 		
-		return(mensajes);
+		else if (msgsFichero == null)
+			return (mensajes);
+		
+		else {
+			numTotalMsg += numMensajes;
+			numTotalMsg += mensajes.length;
+		}
+		mensajesTotalesMemoria = new Mensaje[numTotalMsg];
+		idx = 0;
+		for (int i = 0; i < mensajes.length; i++) 
+			mensajesTotalesMemoria[idx++] = mensajes[i];
+			
+		for (int i = 0; i < msgsFichero.length; i++)
+				mensajesTotalesMemoria[idx++] = msgsFichero[i];
+		
+		return (mensajesTotalesMemoria);
 	}
 	 
 	private static Mensaje[] transformarLineas(String lineasFichero[], Mensaje mensajes[]) {
 		
-	
-		String remitente = "";
-		String destinatario = "";
-		String fecha = "";
-		String hora = "";
-		String asunto = "";
-		String contenido = "";
-		
-		String datos[] = {remitente, destinatario, fecha, hora, asunto, contenido};
+		String datos[] = {"", "", "", "", "", ""};
 		
 		for (int i = 0; i < mensajes.length; i++) {
 			for (int j = 0; j < lineasFichero[i].length(); j++) {
 				for (int k = 0; k < datos.length; k++) {
 					if(lineasFichero[i].charAt(j) == '\t') {
 						j++;
-						while (lineasFichero[i].charAt(j) != '\t' && lineasFichero[i].charAt(j) != '\n')
+						while (j < lineasFichero[i].length() && lineasFichero[i].charAt(j) != '\t' && lineasFichero[i].charAt(j) != '\n') {
 							datos[k] += lineasFichero[i].charAt(j);
+							j++;
+						}
 					}
 				}
 			}
-			mensajes[i] = new Mensaje(remitente, destinatario, fecha, hora, asunto, contenido);
+			mensajes[i] = new Mensaje(datos[0], datos[1], datos[2], datos[3], datos[4], datos[5]);
+			for ( int j = 0; j < datos.length; j++)
+				datos[j] = "";
 		}
 		
 		return (mensajes);
