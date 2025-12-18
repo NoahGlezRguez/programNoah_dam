@@ -2,10 +2,25 @@ package ejercicioUD8_1_Ficheros_Noah;
 
 import java.io.*;
 
+/**
+ * Esta clase contiene los métodos necesarios para volcar en el array que existe en memoria,
+ * que puede tener ya datos o no, los mensajes que hay en un fichero (si es que los hay).
+ */
 public class CargarMensajes {
-
 	
-	
+	/**
+	 * Recibe el array de mensajes en memoria, recibe la ruta del fichero que usará,
+	 * y recoge y vuelca en el array los mensajes que encuentre. Si no tiene el formato
+	 * que se necesita, el numero de lineas hara un "falso mensaje". Solo funcionará
+	 * bien si el mensaje dentro del fichero tiene el formato correcto (datos separados
+	 * por una tabulacion y mensajes separados por \n).
+	 * Al volcarse en el array, se respeta si tenia previamente mensajes, y simplemente
+	 * este array crecera con el conjunto total de mensajes.
+	 * 
+	 * @param mensajes - array de mensajes en memoria
+	 * @param rutaFichero - ruta donde se encuentra el fichero del que se recogen los mensajes
+	 * @return array mensajes - array de todos los mensajes que hay ahora en la memoria
+	 */
 	public static Mensaje[] recuperarDatos(Mensaje mensajes[], String rutaFichero) {
 		
 		FileReader		lector;
@@ -83,7 +98,15 @@ public class CargarMensajes {
 		
 		return (mensajesTotalesMemoria);
 	}
-	 
+	
+	/**
+	 * Lee cada mensaje de un fichero y lo carga en un objeto Mensaje. Si hay mas de uno, los cargará
+	 * todos en un array que devolverá con toda la información. 
+	 * 
+	 * @param lineasFichero - array con todos los mensajes del ficheros divididos por un strig cada uno
+	 * @param mensajes - array de mensajes dode queremos volcar la informacion de los mensajes del fichero leido
+	 * @return array de mensajes con la informacion cargada
+	 */
 	private static Mensaje[] transformarLineas(String lineasFichero[], Mensaje mensajes[]) {
 		
 		String datos[] = {"", "", "", "", "", ""};

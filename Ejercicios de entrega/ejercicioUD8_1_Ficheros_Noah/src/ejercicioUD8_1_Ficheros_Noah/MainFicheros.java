@@ -2,11 +2,20 @@ package ejercicioUD8_1_Ficheros_Noah;
 
 import java.util.Scanner;
 
+/**
+ * Contiene el programa de ficheros
+ */
 public class MainFicheros {
 
 	public static Scanner	teclado = new Scanner(System.in);
 	public static String	entrada;
 	
+	/**
+	 * Muestra un menú de varias operaciones para añadir, ver, guardar o cargar mensajes que hay en memoria
+	 * o en un fichero.
+	 * 
+	 * @param args
+	 */
 	public static void main(String[] args) {
 		
 		int	opc = 0;

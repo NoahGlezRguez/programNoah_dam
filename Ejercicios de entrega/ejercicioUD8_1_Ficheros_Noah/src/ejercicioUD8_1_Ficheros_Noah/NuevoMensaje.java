@@ -46,10 +46,10 @@ public class NuevoMensaje {
 	}
 	
 	/**
+	 * Copia todos los valores de los objetos Mensaje de un array de mensajes a otro array de mensajes.
 	 * 
-	 * 
-	 * @param mensajes
-	 * @param mensajesActualizados
+	 * @param mensajes - array de mensajes original
+	 * @param mensajesActualizados - array de mensajes donde copiar los valores del original
 	 */
 	public static void copiarMensajes(Mensaje mensajes[], Mensaje mensajesActualizados[]) {
 		
@@ -60,8 +60,10 @@ public class NuevoMensaje {
 	}
 		
 	/**
+	 * Pide por pantalla los datos a ingresar de un mensaje, uno por uno, y los guarda en los atributos de un
+	 * objeto Mensaje. Finalmente, devuelve el objeto con los valores metidos.
 	 * 
-	 * @param mensajeNuevo
+	 * @param mensajeNuevo - objeto creado y con valores recien añadidos
 	 */
 	public static Mensaje pedirMensaje() {
 		
@@ -83,6 +85,7 @@ public class NuevoMensaje {
 	}
 	
 	/**
+	 * Imprime el mensaje de petición al usuario para ingresar por teclado uno de los datos de un mensaje.
 	 * 
 	 * @param indice
 	 */

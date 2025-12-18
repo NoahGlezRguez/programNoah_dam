@@ -1,5 +1,8 @@
 package ejercicioUD8_1_Ficheros_Noah;
 
+/**
+ * Para crear objetos Mensaje, con atributos y métodos para gestionar la información que contiene.
+ */
 public class Mensaje {
 
 	private String	remitente = null;
