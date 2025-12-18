@@ -15,9 +15,6 @@ public class MainFicheros {
 		String	menu[] = {"Cargar Mensajes", "Guardar Mensajes", "Añadir mensaje", "Imprimir mensaje", "Salir"};
 		Mensaje	mensajes[] = null;
 		
-		File ficheromsg;
-
-		
 		System.out.println();
 		
 		do {
@@ -28,15 +25,16 @@ public class MainFicheros {
 			switch (opc) {
 
 				case 0:
-					ficheromsg = new File("mensajes.txt");
 					System.out.println("\n\tCargando datos...\n");
-					mensajes = CargarMensajes.recuperarDatos(ficheromsg);
+					mensajes = CargarMensajes.recuperarDatos("mensajes.txt");
+					
 					/*1.- con arrays de objetos
 					 * se mostrara numero total de mensajes cargados (se pueden cargar
 					 * cada vez mas sin guardar ni nada)*/
 					
 					break;
 				case 1:
+					//guardar datos añadiendo \n despues de cada mensaje
 					System.out.println("\n\tGuardando datos...\n");
 					//guardarEnFichero(mensajes);
 					mensajes = null;

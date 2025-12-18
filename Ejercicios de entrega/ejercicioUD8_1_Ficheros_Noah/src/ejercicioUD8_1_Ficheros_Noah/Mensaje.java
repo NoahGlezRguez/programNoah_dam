@@ -10,10 +10,18 @@ public class Mensaje {
 	private String	contenido = null;
 	
 	
+	public Mensaje(String	remitente, String destinatario, String fecha, String hora, String asunto, String contenido) {
+		this.remitente = remitente;
+		this.destinatario = destinatario;
+		this.fecha = fecha; 
+		this.hora = hora;
+		this.asunto = asunto;
+		this.contenido = contenido;
+	}
+	
 	public Mensaje() {
 		
 	}
-		
 	public void imprimirMensaje() {
 		System.out.printf("%15s%15s%10s%10s%20s%40s\n", remitente, destinatario, fecha, hora, asunto, contenido);
 	}
