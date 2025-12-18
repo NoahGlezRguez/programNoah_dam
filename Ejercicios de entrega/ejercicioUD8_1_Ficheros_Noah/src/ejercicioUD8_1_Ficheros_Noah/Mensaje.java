@@ -14,6 +14,10 @@ public class Mensaje {
 		
 	}
 		
+	public void imprimirMensaje() {
+		System.out.printf("%15s%15s%10s%10s%20s%40s\n", remitente, destinatario, fecha, hora, asunto, contenido);
+	}
+	
 	public String getRemitente() {
 		return remitente;
 	}

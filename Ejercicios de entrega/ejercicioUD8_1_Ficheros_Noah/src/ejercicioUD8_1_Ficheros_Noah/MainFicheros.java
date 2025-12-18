@@ -42,10 +42,14 @@ public class MainFicheros {
 					mensajes = NuevoMensaje.añadirMensaje(mensajes);
 					break;
 				case 3:
-					System.out.println("\n\tImprimiendo mensajes...\n");
-					/*4.- imprimir los mensajes en una tabla con la siguiente estructura:
-					 * 		de	para		fecha	hora		asunto	contenido
-					 * 		Si no hubiera mas mensajes, se mostrara "No hay mensajes que mostrar"*/
+					if (mensajes == null)
+						System.out.println("\n\t- No hay mensajes que mostrar...\n");
+					else {
+						System.out.println("\n\tImprimiendo mensajes...\n");
+						System.out.printf("%15s%15s%10s%10s%20s%40s\n", "De", "Para", "Fecha", "Hora", "Asunto", "Contenido");
+						for (int i = 0; i < mensajes.length; i++)
+							mensajes[i].imprimirMensaje();
+					}
 					break;
 			}
 					
