@@ -1,8 +1,7 @@
 package ejercicioUD8_1_Ficheros_Noah;
 
-//import java.io.*;
+import java.io.*;
 import java.util.Scanner;
-
 
 public class MainFicheros {
 
@@ -16,6 +15,9 @@ public class MainFicheros {
 		String	menu[] = {"Cargar Mensajes", "Guardar Mensajes", "Añadir mensaje", "Imprimir mensaje", "Salir"};
 		Mensaje	mensajes[] = null;
 		
+		File ficheromsg;
+
+		
 		System.out.println();
 		
 		do {
@@ -26,14 +28,18 @@ public class MainFicheros {
 			switch (opc) {
 
 				case 0:
+					ficheromsg = new File("mensajes.txt");
 					System.out.println("\n\tCargando datos...\n");
-					//cargarMensajes(mensajes);
+					mensajes = CargarMensajes.recuperarDatos(ficheromsg);
 					/*1.- con arrays de objetos
 					 * se mostrara numero total de mensajes cargados (se pueden cargar
 					 * cada vez mas sin guardar ni nada)*/
+					
 					break;
 				case 1:
 					System.out.println("\n\tGuardando datos...\n");
+					//guardarEnFichero(mensajes);
+					mensajes = null;
 					/* 2.- se guardan los ya cargados en el fichero mensajes.txt
 					 * se mostrara mensaje de "Los mensajes en memoria han sido
 					 * guardados en el fichero mensajes.txt"*/
@@ -46,7 +52,8 @@ public class MainFicheros {
 						System.out.println("\n\t- No hay mensajes que mostrar...\n");
 					else {
 						System.out.println("\n\tImprimiendo mensajes...\n");
-						System.out.printf("%15s%15s%10s%10s%20s%40s\n", "De", "Para", "Fecha", "Hora", "Asunto", "Contenido");
+						System.out.printf("%15s%15s%10s%10s%20s%40s", "De", "Para", "Fecha", "Hora", "Asunto", "Contenido");
+						MetodAux.pintarLinea("-", 110);
 						for (int i = 0; i < mensajes.length; i++)
 							mensajes[i].imprimirMensaje();
 					}
