@@ -26,20 +26,11 @@ public class MainFicheros {
 				case 0:
 					System.out.println("\n\tCargando datos...\n");
 					mensajes = CargarMensajes.recuperarDatos(mensajes, "mensajes.txt");
-					
-					/*1.- con arrays de objetos
-					 * se mostrara numero total de mensajes cargados (se pueden cargar
-					 * cada vez mas sin guardar ni nada)*/
-					
 					break;
 				case 1:
-					//guardar datos añadiendo \n despues de cada mensaje
 					System.out.println("\n\tGuardando datos...\n");
-					//guardarEnFichero(mensajes);
+					GuardarMensajes.guardarEnFichero(mensajes, "mensajes.txt");
 					mensajes = null;
-					/* 2.- se guardan los ya cargados en el fichero mensajes.txt
-					 * se mostrara mensaje de "Los mensajes en memoria han sido
-					 * guardados en el fichero mensajes.txt"*/
 					break;
 				case 2:
 					mensajes = NuevoMensaje.añadirMensaje(mensajes);
