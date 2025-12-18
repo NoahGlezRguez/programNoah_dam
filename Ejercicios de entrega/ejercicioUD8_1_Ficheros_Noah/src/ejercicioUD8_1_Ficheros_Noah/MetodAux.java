@@ -27,6 +27,7 @@ public class MetodAux {
 			opciones = siNo;
 		do {
 			esCorrecto = true;
+			pintarLinea("~", 71);
 			System.out.printf("\n\n\t------> %s <<<<<<------\n\n", titulo);
 			
 			for (int i = 0; i < opciones.length; i++) 

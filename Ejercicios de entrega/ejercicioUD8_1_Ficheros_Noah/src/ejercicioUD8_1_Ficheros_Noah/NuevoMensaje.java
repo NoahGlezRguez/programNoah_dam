@@ -1,13 +1,24 @@
 package ejercicioUD8_1_Ficheros_Noah;
 
+/**
+ * Esta clase gestiona los métodos necesarios para añadir un mensaje. Analiza si había mensajes cargados o no.
+ * Luego solicita al usuario que ingrese los valores del nuevo mensaje que se desea añadir.
+ */
 public class NuevoMensaje {
 
-	public static void añadirMensaje(Mensaje mensajes[]) {
+	/**
+	 * 
+	 * @param mensajes
+	 * @return
+	 */
+	public static Mensaje[] añadirMensaje(Mensaje mensajes[]) {
 		
 		Mensaje mensajesActualizados[] = null;
+		int		añadir;
 		
 		if (mensajes == null) {
 			mensajes = new Mensaje[1];
+			mensajes[0] = new Mensaje();
 			pedirMensaje(mensajes[0]);
 		}
 		else {
@@ -16,17 +27,34 @@ public class NuevoMensaje {
 			mensajesActualizados[mensajes.length] = new Mensaje();
 			pedirMensaje(mensajesActualizados[mensajes.length]);
 		}
+		añadir = MetodAux.menuOpciones("¿Desea añadir definitivamente este nuevo mensaje?", null, "Selecciona tu respuesta");
+		if (añadir == 0) {
+			System.out.println("\n\tAñadiendo mensaje...\n");
+			return(mensajesActualizados);
+		}
+		else {
+			System.out.println("\n\tCancelando operación...\n");
+			return(mensajes);
+		}	
 	}
 	
+	/**
+	 * 
+	 * @param mensajes
+	 * @param mensajesActualizados
+	 */
 	public static void copiarMensajes(Mensaje mensajes[], Mensaje mensajesActualizados[]) {
 		
 		for (int i = 0; i < mensajes.length; i++) {
 			mensajesActualizados[i] = new Mensaje();
 			mensajesActualizados[i] = mensajes[i];
 		}
-
 	}
-			
+		
+	/**
+	 * 
+	 * @param mensajeNuevo
+	 */
 	public static void pedirMensaje(Mensaje mensajeNuevo) {
 		
 		pedirDato(0);
@@ -44,11 +72,14 @@ public class NuevoMensaje {
 
 	}
 	
-
+	/**
+	 * 
+	 * @param indice
+	 */
 	public static void pedirDato(int indice) {
 		
 		String datos[] = {"remitente", "destinatario", "fecha", "hora", "asunto", "contenido"};		
 		
-		System.out.printf("\n\t- Ingrese %-15s: ", datos[indice]);
+		System.out.printf("\n\t- Ingrese %s: ", datos[indice]);
 	}
 }
