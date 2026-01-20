@@ -18,10 +18,12 @@ public class LeerSeleccion {
 	 * @return Índice del producto seleccionado en el array. Retorna -1 si no se encuentra
 	 */
 	public static int seleccionarProducto(Producto productos[], String opcion) {
+		
 		String	entrada;
 		int		seleccionProducto = -1;
 		boolean	esCorrecto = false;
 		int		indiceProducto = -1;
+		
 		do {
 			System.out.printf("\t------>>>>>> ¿Qué producto desea %s? <<<<<<------\n\n", opcion);
 			System.out.print("\t·····> Escriba únicamente el ID del producto:\t");
