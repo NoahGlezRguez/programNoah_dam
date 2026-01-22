@@ -157,7 +157,7 @@ public class RecogerDatoDeProducto {
 		int		totalProductos = productos.length;
 		boolean	hayLetras = false;
 		
-		if (ValidarTipoDeEntrada.estaDentroDeLimites(entrada.trim()) && (ValidarTipoDeEntrada.checkSoloAlfanumerico(entrada.trim()))) {
+		if (ValidarTipoDeEntrada.estaDentroDeLimites(entrada.trim()) && (ValidarTipoDeEntrada.checkSoloAlfanumericoEspaciado(entrada.trim()))) {
 			
 			for (int i = 0; i < entrada.trim().length(); i++) {
 				if (Character.isLetter(entrada.trim().charAt(i)))

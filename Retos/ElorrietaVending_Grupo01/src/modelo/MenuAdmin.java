@@ -121,7 +121,7 @@ public class MenuAdmin {
 		
 		boolean existe = false;
 		
-		if (ValidarTipoDeEntrada.estaDentroDeLimites(entrada) && ValidarTipoDeEntrada.checkSoloAlfanumerico(entrada)) {
+		if (ValidarTipoDeEntrada.estaDentroDeLimites(entrada) && ValidarTipoDeEntrada.checkSoloAlfanumericoEspaciado(entrada)) {
 			for (int i = 0; i < 4; i++) {
 				if (entrada.equals(administradores[i].nombre))
 					existe = true;
@@ -164,7 +164,7 @@ public class MenuAdmin {
 	private static boolean checkContraseña(String entrada, Usuario administradores[], int indiceUsuario) {
 		
 		boolean existe = true;
-		if (ValidarTipoDeEntrada.estaDentroDeLimites(entrada) && ValidarTipoDeEntrada.checkSoloAlfanumerico(entrada)) {
+		if (ValidarTipoDeEntrada.estaDentroDeLimites(entrada) && ValidarTipoDeEntrada.checkSoloAlfanumericoEspaciado(entrada)) {
 			if (!entrada.equals(administradores[indiceUsuario].contraseña)) {
 				existe = false;
 				MostrarMensajeDeError.mostrarError(7);

@@ -54,7 +54,29 @@ public class ValidarTipoDeEntrada {
 	 * @param entrada - String a validar introducida por el usuario.
 	 * @return true si solo contiene letras, números y espacios o tabulaciones, false en caso contrario
 	 */
-	public static boolean checkSoloAlfanumerico(String entrada) {
+	public static boolean checkSoloAlfanumericoEspaciado(String entrada) {
+		boolean esCorrecto = true;
+
+		for (int i = 0; i < entrada.length(); i++) {
+			if (!Character.isLetterOrDigit(entrada.charAt(i)) && entrada.charAt(i) != ' ' && entrada.charAt(i) != '\t') 
+				esCorrecto = false;
+		}
+		if (!esCorrecto)
+			MostrarMensajeDeError.mostrarError(4);
+		return (esCorrecto);
+	}
+	
+	/*
+	 * NO SE SI HARA FALTA ELIMINAR ALGUNO DE ESTOS METODOS MAS ADELANTE PORQUE "SOBREN" * 
+	 * */
+	
+	
+	/**
+	 * Valida que la entrada sea alfanumérica (letras y números, no permite espaciado).
+	 * @param entrada - String a validar introducida por el usuario.
+	 * @return true si solo contiene letras y/o números, false en caso contrario o en caso de que tenga más cosas
+	 */
+	public static boolean checkSoloAlfanumericoSinEspacios(String entrada) {
 		boolean esCorrecto = true;
 
 		for (int i = 0; i < entrada.length(); i++) {
