@@ -338,6 +338,7 @@ public class Programa {
 							System.out.println(pelis[k].toString());
 						}
 					}
+					System.out.println();
 				}
 			}
 			else {
@@ -363,6 +364,7 @@ public class Programa {
 							System.out.println(pelis[k].toString());
 						}
 					}
+					System.out.println();
 				}
 			}
 		}
