@@ -120,9 +120,8 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 			
 			existe = verificarExistencia();	
 			
-			// Pulsado botón Insertar
 			if (evento.getSource() == bInsertar) {
-				lMensajeInformativo.setText(" has pulsado el botón Insertar");
+				informarBotonClickado("Insertar");
 				
 				if (!existe) {
 					lMensajeInformativo.setText("NUEVO DEPARTAMENTO.");
@@ -133,9 +132,8 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 				}
 			}
 	
-			// Pulsado botón CONSULTAR
-			if (evento.getSource() == bConsultar) {
-				lMensajeInformativo.setText(" has pulsado el boton Consultar");
+			else if (evento.getSource() == bConsultar) {
+				informarBotonClickado("Consultar");
 				
 				if (existe) {
 					visualizarDepart(numDepart);
@@ -147,9 +145,8 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 				}
 			}
 	
-			// Pulsado botón BORRAR
-			if (evento.getSource() == bBorrar) {
-				lMensajeInformativo.setText(" has pulsado el boton Borrar");
+			else if (evento.getSource() == bBorrar) {
+				informarBotonClickado("Borrar");
 				
 				if (existe) {
 					visualizarDepart(numDepart);
@@ -171,13 +168,10 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 					txtNombre.setText(null);
 					txtLocalidad.setText(null);
 				}
-					
-	
 			}
 			
-			// Pulsado bot�n MODIFICAR
-			if (evento.getSource() == bModificar) {
-				lMensajeInformativo.setText(" has pulsado el boton Modificar.");
+			else if (evento.getSource() == bModificar) {
+				informarBotonClickado("Modificar.");
 				
 				if (existe) {
 					confirmacion = JOptionPane.showConfirmDialog(this, "ESTAS SEGURO DE MODIFICAR...",
@@ -197,13 +191,11 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 					
 			}
 			
-			// Pulsado bot�n SALIR
-			if (evento.getSource() == bCerrar) { 
+			else if (evento.getSource() == bCerrar) { 
 				System.exit(0);
 			}
 			
-			// Pulsado bot�n VER POR CONSOLA
-			if (evento.getSource() == bVerEnConsola) { 
+			else if (evento.getSource() == bVerEnConsola) { 
 				try {
 					lMensajeInformativo.setText("Visualizando el fichero por la consola.....");
 					verPorConsola();
@@ -212,9 +204,8 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 				}
 			}
 			
-			// Pulsado bot�n LIMPIAR
-			if (evento.getSource() == bLimpiarDatos) {
-				lMensajeInformativo.setText(" has pulsado el boton limpiar.");
+			else if (evento.getSource() == bLimpiarDatos) {
+				informarBotonClickado("Limpiar.");
 				
 				txtNumero.setText(null);
 				txtNombre.setText(null);
@@ -223,6 +214,10 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 		}
 	}
 
+	private void informarBotonClickado(String boton) {
+		lMensajeInformativo.setText("Has pulsado el botón ".concat(boton));
+	}
+	
 	private boolean validarDatosIntroducidos() {
 		
 		boolean esCorrecto = false;
