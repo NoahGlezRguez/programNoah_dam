@@ -106,143 +106,139 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 	
 	public void actionPerformed(ActionEvent evento) {
 		
-		int numDepart;
-		int	confirmacion;
+		int		numDepart = -1;
+		int		confirmacion;
+		boolean	esCorrecto = false;
+		boolean	existe = true;
 		
-		// Pulsado botón Insertar
-		if (evento.getSource() == bInsertar) {
-			lMensajeInformativo.setText(" has pulsado el botón insertar");
-			try {
-				numDepart = Integer.parseInt(txtNumero.getText());
-				if (numDepart > 0)
-					if (consultarDepart(numDepart))
-						lMensajeInformativo.setText("DEPARTAMENTO EXISTE.");
-					else {
-						lMensajeInformativo.setText("NUEVO DEPARTAMENTO.");
-						guardarDepart(numDepart, txtNombre.getText(), txtLocalidad.getText());
-						lMensajeInformativo.setText("NUEVO DEPARTAMENTO GRABADO.");
-					}
-				else
-					lMensajeInformativo.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");
-
-			} catch (java.lang.NumberFormatException excepFormatoNumerico) {
-				lMensajeInformativo.setText("DEPARTAMENTO ERRÓNEO.");
-			} catch (IOException excepEntradaSalida) {
-				lMensajeInformativo.setText("ERROR EN EL FICHERO. Fichero no existe. (ALTA)");
-			}
-		}
-
-		// Pulsado botón CONSULTAR
-		if (evento.getSource() == bConsultar) {
-			lMensajeInformativo.setText(" has pulsado el boton Consultar");
-			try {
-				numDepart = Integer.parseInt(txtNumero.getText());
-				if (numDepart > 0)
+		//Analizar previamente si el valor introducido es correcto y consultar si existe
+		try {
+			numDepart = Integer.parseInt(txtNumero.getText());
+			
+			if (numDepart > 0) {
+				esCorrecto = true;
+				
+				try {
 					if (consultarDepart(numDepart)) {
 						lMensajeInformativo.setText("DEPARTAMENTO EXISTE");
-						visualizarDepart(numDepart);
-					} else {
-						lMensajeInformativo.setText("DEPARTAMENTO NO EXISTE");
-						txtNombre.setText(" ");
-						txtLocalidad.setText(" ");
 					}
-				else
-					lMensajeInformativo.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");
-
-			} catch (java.lang.NumberFormatException excepFormatoNumerico){ // revisar controlar el error del Integer.parseInt
+				} catch (FileNotFoundException excepNoExiste) {
+					existe = false;
+				} catch (IOException exError) {
+					System.out.println("ERROR AL LEER AleatorioDep.dat");
+					exError.printStackTrace();				
+				}
+			}
+			else {
+				lMensajeInformativo.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");			
+			}
 			
-				lMensajeInformativo.setText("DEPARTAMENTO ERR�NEO");
-			} catch (IOException ex2) {
-				lMensajeInformativo.setText("ERROR EN EL FICHERO. Fichero no existe. (ALTA)");
-			}
-
+		} catch (java.lang.NumberFormatException excepFormatoNumerico){
+			lMensajeInformativo.setText("DEPARTAMENTO ERRÓNEO.");
 		}
-
-		// Pulsado botón BORRAR
-		if (evento.getSource() == bBorrar) {
-			lMensajeInformativo.setText(" has pulsado el boton Borrar");
-			try {
-				numDepart = Integer.parseInt(txtNumero.getText());
-				if (numDepart > 0)
-					if (consultarDepart(numDepart)) {
-						lMensajeInformativo.setText("DEPARTAMENTO EXISTE.");
-						visualizarDepart(numDepart);
-						confirmacion = JOptionPane.showConfirmDialog(this, "ESTAS SEGURO DE BORRAR...", "AVISO BORRADO.",
-								JOptionPane.OK_CANCEL_OPTION);
-						// si devuelve 0 es OK
-						// mensaje.setText(" has pulsado el boton Borrar "+ confirm);
-						if (confirmacion == 0) {
-							borrarDepart(numDepart);
-							lMensajeInformativo.setText(" REGISTRO BORRADO: " + numDepart);
-							txtNombre.setText(" ");
-							txtLocalidad.setText(" ");
-						}
-					} else {
-						lMensajeInformativo.setText("DEPARTAMENTO NO EXISTE.");
-						txtNombre.setText(" ");
-						txtLocalidad.setText(" ");
+		
+		if (esCorrecto) {
+					
+			// Pulsado botón Insertar
+			if (evento.getSource() == bInsertar) {
+				lMensajeInformativo.setText(" has pulsado el botón Insertar");
+				
+				if (!existe) {
+					lMensajeInformativo.setText("NUEVO DEPARTAMENTO.");
+					
+					guardarDepart(numDepart, txtNombre.getText(), txtLocalidad.getText());
+					
+					lMensajeInformativo.setText("NUEVO DEPARTAMENTO GRABADO.");
+				}
+			}
+	
+			// Pulsado botón CONSULTAR
+			if (evento.getSource() == bConsultar) {
+				lMensajeInformativo.setText(" has pulsado el boton Consultar");
+				
+				if (existe) {
+					visualizarDepart(numDepart);
+				} else {
+					lMensajeInformativo.setText("DEPARTAMENTO NO EXISTE");
+					
+					txtNombre.setText(null);
+					txtLocalidad.setText(null);
+				}
+			}
+	
+			// Pulsado botón BORRAR
+			if (evento.getSource() == bBorrar) {
+				lMensajeInformativo.setText(" has pulsado el boton Borrar");
+				
+				if (existe) {
+					visualizarDepart(numDepart);
+					
+					confirmacion = JOptionPane.showConfirmDialog(this, "ESTAS SEGURO DE BORRAR...",
+							"AVISO BORRADO.", JOptionPane.OK_CANCEL_OPTION);
+					
+					// si devuelve 0 es OK
+					if (confirmacion == 0) {
+						borrarDepart(numDepart);
+						
+						lMensajeInformativo.setText(" REGISTRO BORRADO: " + numDepart);
+						
+						txtNombre.setText(null);
+						txtLocalidad.setText(null);
 					}
-				else
-					lMensajeInformativo.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");
-
-			} catch (java.lang.NumberFormatException ex){
-				lMensajeInformativo.setText("DEPARTAMENTO ERR�NEO");
-			} catch (IOException ex2) {
-				lMensajeInformativo.setText("ERROR EN EL FICHERO. Fichero no existe. (BORRAR)");
+				} else {
+					lMensajeInformativo.setText("DEPARTAMENTO NO EXISTE.");
+					txtNombre.setText(null);
+					txtLocalidad.setText(null);
+				}
+					
+	
 			}
-		}
-		
-		// Pulsado bot�n MODIFICAR
-		if (evento.getSource() == bModificar) {
-			lMensajeInformativo.setText(" has pulsado el boton Modificar.");
-			try {
-				numDepart = Integer.parseInt(txtNumero.getText());
-				if (numDepart > 0)
-					if (consultarDepart(numDepart)) {
-						lMensajeInformativo.setText("DEPARTAMENTO EXISTE.");
-						confirmacion = JOptionPane.showConfirmDialog(this, "ESTAS SEGURO DE MODIFICAR...",
-								"AVISO MODIFICACI�N.", JOptionPane.OK_CANCEL_OPTION);
-						// si devuelve 0 es OK
-						if (confirmacion == 0) {
-							modificarDepart(numDepart);
-							lMensajeInformativo.setText(" REGISTRO MODIFICADO: " + numDepart);
-						}
-					} else {
-						lMensajeInformativo.setText("DEPARTAMENTO NO EXISTE.");
-						txtNombre.setText(" ");
-						txtLocalidad.setText(" ");
+			
+			// Pulsado bot�n MODIFICAR
+			if (evento.getSource() == bModificar) {
+				lMensajeInformativo.setText(" has pulsado el boton Modificar.");
+				
+				if (existe) {
+					confirmacion = JOptionPane.showConfirmDialog(this, "ESTAS SEGURO DE MODIFICAR...",
+							"AVISO MODIFICACIÓN.", JOptionPane.OK_CANCEL_OPTION);
+					
+					// si devuelve 0 es OK
+					if (confirmacion == 0) {
+						modificarDepart(numDepart);
+						lMensajeInformativo.setText(" REGISTRO MODIFICADO: " + numDepart);
 					}
-				else
-					lMensajeInformativo.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");
-
-			} catch (java.lang.NumberFormatException ex){
-				lMensajeInformativo.setText("DEPARTAMENTO ERR�NEO");
-			} catch (IOException ex2) {
-				lMensajeInformativo.setText(" ERROR EN EL FICHERO. Fichero no existe. (MODIFICAR)");
+				} else {
+					lMensajeInformativo.setText("DEPARTAMENTO NO EXISTE.");
+					
+					txtNombre.setText(null);
+					txtLocalidad.setText(null);
+				}
+					
 			}
-		}
-		
-		// Pulsado bot�n SALIR
-		if (evento.getSource() == bCerrar) { 
-			System.exit(0);
-		}
-		
-		// Pulsado bot�n VER POR CONSOLA
-		if (evento.getSource() == bVerEnConsola) { 
-			try {
-				lMensajeInformativo.setText("Visualizando el fichero por la consolaa.....");
-				verPorConsola();
-			} catch (IOException e1) {
-				System.out.println("ERROR AL LEER AleatorioDep.dat");
+			
+			// Pulsado bot�n SALIR
+			if (evento.getSource() == bCerrar) { 
+				System.exit(0);
 			}
-		}
-		
-		// Pulsado bot�n LIMPIAR
-		if (evento.getSource() == bLimpiarDatos) {
-			lMensajeInformativo.setText(" has pulsado el boton limpiar..");
-			txtNumero.setText(null);
-			txtNombre.setText(null);
-			txtLocalidad.setText(null);
+			
+			// Pulsado bot�n VER POR CONSOLA
+			if (evento.getSource() == bVerEnConsola) { 
+				try {
+					lMensajeInformativo.setText("Visualizando el fichero por la consola.....");
+					verPorConsola();
+				} catch (IOException e1) {
+					System.out.println("ERROR AL LEER AleatorioDep.dat");
+				}
+			}
+			
+			// Pulsado bot�n LIMPIAR
+			if (evento.getSource() == bLimpiarDatos) {
+				lMensajeInformativo.setText(" has pulsado el boton limpiar.");
+				
+				txtNumero.setText(null);
+				txtNombre.setText(null);
+				txtLocalidad.setText(null);
+			}
 		}
 	}
 
@@ -276,8 +272,10 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 				System.out.println("DEP: " + dep + ", Nombre: " + nom + ", Localidad: " + loc);
 				pos = pos + 44;
 				// Si he recorrido todos los bytes salgo del for
-				if (file.getFilePointer() == file.length())
+				if (file.getFilePointer() == file.length()) {
+					file.close();
 					break;
+				}
 			}
 			
 			file.close(); // cerrar fichero
@@ -292,10 +290,13 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 		File fichero = new File("AleatorioDep.dat");
 		RandomAccessFile file = new RandomAccessFile(fichero, "r");
 		// Calculo del reg a leer
-		try {
+		
 			pos = 44 * (dep - 1);
-			if (file.length() == 0)
+			if (file.length() == 0) {
+				file.close();
 				return false; // si est� vac�o
+				
+			}
 			file.seek(pos);
 			depa = file.readInt();
 			file.close();
@@ -304,10 +305,7 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 				return true;
 			else
 				return false;
-		} catch (IOException ex2) {
-			System.out.println(" ERROR al leer..");
-			return false;
-		}
+		
 	} // fin consultar
 
 	void visualizarDepart(int dep) {
