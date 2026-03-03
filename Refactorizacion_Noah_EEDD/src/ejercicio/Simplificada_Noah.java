@@ -1,7 +1,6 @@
 package ejercicio;
 
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -18,10 +17,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
+public class Simplificada_Noah extends JFrame implements ActionListener {
 
-public class VentanaDepartamento extends JFrame implements ActionListener {
-
-	private static final long serialVersionUID = 1L;
+	private static final long	serialVersionUID = 1L;
+	private static final String	TITULO_VENTANA = "GESTIÓN DE DEPARTAMENTOS.";
+	
 	private JTextField txtNumero = new JTextField(10);
 	private JTextField txtNombre = new JTextField(25);
 	private JTextField txtLocalidad = new JTextField(25);
@@ -35,57 +35,48 @@ public class VentanaDepartamento extends JFrame implements ActionListener {
 	private JButton bInsertar = new JButton("Insertar Depart.");
 	private JButton bConsultar = new JButton("Consultar Depart.");
 	private JButton bBorrar = new JButton("Borrar Depart.");
-	private JButton bReset = new JButton("Limpiar datos");
+	private JButton bLimpiarDatos = new JButton("Limpiar datos");
 	private JButton bModificar = new JButton("Modificar Departamento");
 	private JButton bVerEnConsola = new JButton("Ver por consola");
 	private JButton bCerrar = new JButton("CERRAR");
 	
-	private Color color;
+	public Simplificada_Noah(JFrame marcoVentana) {
+		
+		setTitle(TITULO_VENTANA);
+		
+		iniciarPaneles();
+		
+		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-	public VentanaDepartamento(JFrame marcoVentana) {
-		setTitle("GESTIÓN DE DEPARTAMENTOS.");
+		iniciarBotones();
+	}
 
-		JPanel pCabecera = new JPanel();
-		color = Color.CYAN;
-		pCabecera.add(lTitulo);
-		pCabecera.setBackground(color);
-
-		JPanel pNumeroDepart = new JPanel();
-		pNumeroDepart.setLayout(new FlowLayout());
-		pNumeroDepart.add(lNumero);
-		pNumeroDepart.add(txtNumero);
-		pNumeroDepart.add(bConsultar);
-
-		JPanel pNombreDepart = new JPanel();
-		pNombreDepart.setLayout(new FlowLayout());
-		pNombreDepart.add(lNombre);
-		pNombreDepart.add(txtNombre);
-
-		JPanel pLocalidadDepart = new JPanel();
-		pLocalidadDepart.setLayout(new FlowLayout());
-		pLocalidadDepart.add(lLocalidad);
-		pLocalidadDepart.add(txtLocalidad);
-
-		JPanel pOperacionesDepart = new JPanel();
-		pOperacionesDepart.setLayout(new FlowLayout());
-		color = Color.YELLOW;
-		pOperacionesDepart.add(bInsertar);
-		pOperacionesDepart.add(bBorrar);
-		pOperacionesDepart.add(bModificar);
-		pOperacionesDepart.setBackground(color);
-
-		JPanel pOperacionesVentana = new JPanel();
-		pOperacionesVentana.setLayout(new FlowLayout());
-		color = Color.PINK;
-		pOperacionesVentana.add(bReset);
-		pOperacionesVentana.add(bVerEnConsola);
-		pOperacionesVentana.add(bCerrar);
-		pOperacionesVentana.setBackground(color);
-
-		JPanel pMensajeInferior = new JPanel();
-		pMensajeInferior.setLayout(new FlowLayout());
-		pMensajeInferior.add(lMensajeInformativo);
-
+	public void iniciarPaneles() {
+		
+		JPanel	pCabecera;
+		JPanel	pNumeroDepart;
+		JPanel	pNombreDepart;
+		JPanel	pLocalidadDepart;
+		JPanel	pOperacionesDepart;
+		JPanel	pOperacionesVentana;
+		JPanel	pMensajeInferior;
+		
+		pCabecera = new JPanel();
+		pNumeroDepart = new JPanel();		
+		pNombreDepart = new JPanel();		
+		pLocalidadDepart = new JPanel();		
+		pOperacionesDepart = new JPanel();
+		pOperacionesVentana = new JPanel();		
+		pMensajeInferior = new JPanel();		
+			
+		Panel.crearPanel(pCabecera, lTitulo, Color.CYAN);
+		Panel.crearPanel(pNumeroDepart, lNumero, txtNumero, bConsultar);
+		Panel.crearPanel(pNombreDepart, lNombre, txtNombre);
+		Panel.crearPanel(pLocalidadDepart, lLocalidad, txtLocalidad);
+		Panel.crearPanel(pOperacionesDepart, bInsertar, bBorrar, bModificar, Color.YELLOW);
+		Panel.crearPanel(pOperacionesVentana, bLimpiarDatos, bVerEnConsola, bCerrar, Color.PINK);
+		Panel.crearPanel(pMensajeInferior, lMensajeInformativo);
+		
 		// para ver la ventana y colocar los controles verticalmente
 		setLayout(new BoxLayout(getContentPane(), BoxLayout.Y_AXIS));
 		
@@ -97,20 +88,24 @@ public class VentanaDepartamento extends JFrame implements ActionListener {
 		add(pOperacionesDepart);
 		add(pOperacionesVentana);
 		add(pMensajeInferior);
+		
 		pack(); // hace que se coloquen alineados los elementos de cada JPanel
-
-		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
+	}
+	
+	public void iniciarBotones() {
+		
 		bInsertar.addActionListener(this);
-		bReset.addActionListener(this);
+		bLimpiarDatos.addActionListener(this);
 		bCerrar.addActionListener(this);
 		bConsultar.addActionListener(this);
 		bBorrar.addActionListener(this);
 		bModificar.addActionListener(this);
 		bVerEnConsola.addActionListener(this);
+		
 	}
-
+	
 	public void actionPerformed(ActionEvent evento) {
+		
 		int numDepart;
 		int	confirmacion;
 		
@@ -124,7 +119,7 @@ public class VentanaDepartamento extends JFrame implements ActionListener {
 						lMensajeInformativo.setText("DEPARTAMENTO EXISTE.");
 					else {
 						lMensajeInformativo.setText("NUEVO DEPARTAMENTO.");
-						grabar(numDepart, txtNombre.getText(), txtLocalidad.getText());
+						guardarDepart(numDepart, txtNombre.getText(), txtLocalidad.getText());
 						lMensajeInformativo.setText("NUEVO DEPARTAMENTO GRABADO.");
 					}
 				else
@@ -209,7 +204,7 @@ public class VentanaDepartamento extends JFrame implements ActionListener {
 								"AVISO MODIFICACI�N.", JOptionPane.OK_CANCEL_OPTION);
 						// si devuelve 0 es OK
 						if (confirmacion == 0) {
-							modificar(numDepart);
+							modificarDepart(numDepart);
 							lMensajeInformativo.setText(" REGISTRO MODIFICADO: " + numDepart);
 						}
 					} else {
@@ -236,22 +231,24 @@ public class VentanaDepartamento extends JFrame implements ActionListener {
 		if (evento.getSource() == bVerEnConsola) { 
 			try {
 				lMensajeInformativo.setText("Visualizando el fichero por la consolaa.....");
-				verporconsola();
+				verPorConsola();
 			} catch (IOException e1) {
 				System.out.println("ERROR AL LEER AleatorioDep.dat");
 			}
 		}
 		
 		// Pulsado bot�n LIMPIAR
-		if (evento.getSource() == bReset) {
+		if (evento.getSource() == bLimpiarDatos) {
 			lMensajeInformativo.setText(" has pulsado el boton limpiar..");
-			txtNumero.setText(" ");
-			txtNombre.setText(" ");
-			txtLocalidad.setText(" ");
+			txtNumero.setText(null);
+			txtNombre.setText(null);
+			txtLocalidad.setText(null);
 		}
 	}
 
-	public void verporconsola() throws IOException, FileNotFoundException {
+	
+	
+	public void verPorConsola() throws IOException, FileNotFoundException {
 		String nom = "", loc = "";
 		int dep = 0;
 		long pos;
@@ -375,7 +372,7 @@ public class VentanaDepartamento extends JFrame implements ActionListener {
 		}
 	} // fin borrar
 
-	void modificar(int dep) { // con modificar asignamos los datos tecleados
+	void modificarDepart(int dep) { // con modificar asignamos los datos tecleados
 		String nom = "", loca = "";
 		StringBuffer buffer = null;
 		long pos;
@@ -403,7 +400,7 @@ public class VentanaDepartamento extends JFrame implements ActionListener {
 		}
 	} // fin modificar
 
-	void grabar(int dep, String nom, String loc) {
+	void guardarDepart(int dep, String nom, String loc) {
 		long pos;
 		StringBuffer buffer = null;
 		File fichero = new File("AleatorioDep.dat");
