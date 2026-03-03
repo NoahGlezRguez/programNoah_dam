@@ -40,6 +40,8 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 	private JButton bVerEnConsola = new JButton("Ver por consola");
 	private JButton bCerrar = new JButton("CERRAR");
 	
+	private static int numDepart;
+	
 	public Simplificada_Noah(JFrame marcoVentana) {
 		
 		setTitle(TITULO_VENTANA);
@@ -108,37 +110,16 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 		
 		int		numDepart = -1;
 		int		confirmacion;
-		boolean	esCorrecto = false;
-		boolean	existe = true;
+		boolean	esCorrecto;
+		boolean	existe;
 		
 		//Analizar previamente si el valor introducido es correcto y consultar si existe
-		try {
-			numDepart = Integer.parseInt(txtNumero.getText());
-			
-			if (numDepart > 0) {
-				esCorrecto = true;
-				
-				try {
-					if (consultarDepart(numDepart)) {
-						lMensajeInformativo.setText("DEPARTAMENTO EXISTE");
-					}
-				} catch (FileNotFoundException excepNoExiste) {
-					existe = false;
-				} catch (IOException exError) {
-					System.out.println("ERROR AL LEER AleatorioDep.dat");
-					exError.printStackTrace();				
-				}
-			}
-			else {
-				lMensajeInformativo.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");			
-			}
-			
-		} catch (java.lang.NumberFormatException excepFormatoNumerico){
-			lMensajeInformativo.setText("DEPARTAMENTO ERRÓNEO.");
-		}
-		
+		esCorrecto = validarDatosIntroducidos();	
+
 		if (esCorrecto) {
-					
+			
+			existe = verificarExistencia();	
+			
 			// Pulsado botón Insertar
 			if (evento.getSource() == bInsertar) {
 				lMensajeInformativo.setText(" has pulsado el botón Insertar");
@@ -242,7 +223,44 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 		}
 	}
 
+	private boolean validarDatosIntroducidos() {
+		
+		boolean esCorrecto = false;
+		
+		try {
+			numDepart = Integer.parseInt(txtNumero.getText());
+			
+			if (numDepart > 0) {
+				esCorrecto = true;
+			}
+			else {
+				lMensajeInformativo.setText("DEPARTAMENTO DEBE SER MAYOR QUE 0");			
+			}
+			
+		} catch (java.lang.NumberFormatException excepFormatoNumerico){
+			lMensajeInformativo.setText("DEPARTAMENTO ERRÓNEO.");
+		}
+		
+		return (esCorrecto);
+	}
 	
+	private boolean verificarExistencia() {
+		
+		boolean existe = true;
+		
+		try {
+			if (consultarDepart(numDepart)) {
+				lMensajeInformativo.setText("DEPARTAMENTO EXISTE");
+			}
+		} catch (FileNotFoundException excepNoExiste) {
+			existe = false;
+		} catch (IOException exError) {
+			System.out.println("ERROR AL LEER AleatorioDep.dat");
+			exError.printStackTrace();				
+		}
+		
+		return (existe);
+	}
 	
 	public void verPorConsola() throws IOException, FileNotFoundException {
 		String nom = "", loc = "";
