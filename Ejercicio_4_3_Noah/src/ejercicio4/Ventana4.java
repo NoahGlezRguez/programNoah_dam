@@ -132,7 +132,7 @@ public class Ventana4 extends JFrame implements ActionListener {
 				bPrimera.setEnabled(false);
 				bAnterior.setEnabled(false);
 			}
-			else if (foto.getDescription().equals(rutaFotos[5])) {
+			else if (foto.getDescription().equals(rutaFotos[rutaFotos.length - 1])) {
 				cambiarFoto(-1);
 				bSiguiente.setEnabled(true);
 				bUltima.setEnabled(true);
@@ -143,7 +143,7 @@ public class Ventana4 extends JFrame implements ActionListener {
 		}
 		else if (evento.getSource() == bSiguiente) {
 			
-			if (foto.getDescription().equals(rutaFotos[4])) {
+			if (foto.getDescription().equals(rutaFotos[rutaFotos.length - 2])) {
 				cambiarFoto(1);
 				bSiguiente.setEnabled(false);
 				bUltima.setEnabled(false);
@@ -183,7 +183,7 @@ public class Ventana4 extends JFrame implements ActionListener {
 				foto = new ImageIcon(rutaFotos[indice]);
 				break;
 			case 2:
-				foto = new ImageIcon(rutaFotos[5]);
+				foto = new ImageIcon(rutaFotos[rutaFotos.length - 1]);
 				break;		
 		}
 
