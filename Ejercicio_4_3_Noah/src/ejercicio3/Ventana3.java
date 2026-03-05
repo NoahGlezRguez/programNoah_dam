@@ -45,6 +45,51 @@ public class Ventana3 extends JFrame implements ActionListener {
 		setearPaneles();
 	}
 
+	private void setearPaneles() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 349);
+		
+		ponerCabecera();
+		setearTextosFormulario();
+		setearBotonesFormulario();
+		setearTextosDatos();
+		
+		panelPrincipal = new JPanel();
+		setContentPane(panelPrincipal);
+		panelPrincipal.setLayout(null);
+		
+		pFormulario = new JPanel();
+		pFormulario.setBounds(10, 11, 414, 209);
+		pFormulario.setLayout(null);
+		
+		pDatos = new JPanel();
+		pDatos.setBounds(10, 231, 414, 68);
+		pDatos.setLayout(null);
+		
+		pFormulario.add(tCabecera);
+		
+		pFormulario.add(lNombre);
+		pFormulario.add(lApellido1);
+		pFormulario.add(lApellido2);
+		pFormulario.add(comboBoxDNIE);
+		pFormulario.add(lEdad);
+		
+		pFormulario.add(tNombre);
+		pFormulario.add(tApellido1);
+		pFormulario.add(tApellido2);
+		pFormulario.add(tDNIE);
+		pFormulario.add(tEdad);
+		
+		pFormulario.add(bAceptar);
+		pFormulario.add(bLimpiar);	
+
+		pDatos.add(tTituloDatos);
+		pDatos.add(datosIntroducidos);
+		
+		panelPrincipal.add(pDatos);
+		panelPrincipal.add(pFormulario);
+	}
+	
 	private void ponerCabecera() {
 		
 		tCabecera = new JTextField();
@@ -107,10 +152,14 @@ public class Ventana3 extends JFrame implements ActionListener {
 		bAceptar.setFont(new Font("SimSun-ExtG", Font.BOLD, 14));
 		bAceptar.setBounds(94, 175, 89, 23);
 		
+		bAceptar.addActionListener(this);
+		
 		bLimpiar = new JButton("Limpiar");
 		bLimpiar.setForeground(new Color(255, 0, 0));
 		bLimpiar.setFont(new Font("SimSun-ExtG", Font.BOLD, 14));
 		bLimpiar.setBounds(230, 175, 89, 23);
+		
+		bLimpiar.addActionListener(this);
 	}
 	
 	private void setearTextosDatos() {
@@ -127,55 +176,74 @@ public class Ventana3 extends JFrame implements ActionListener {
 		datosIntroducidos.setEditable(false);
 		datosIntroducidos.setBounds(0, 25, 414, 43);
 	}
-	
-	private void setearPaneles() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 349);
-		
-		ponerCabecera();
-		setearTextosFormulario();
-		setearBotonesFormulario();
-		setearTextosDatos();
-		
-		panelPrincipal = new JPanel();
-		setContentPane(panelPrincipal);
-		panelPrincipal.setLayout(null);
-		
-		pFormulario = new JPanel();
-		pFormulario.setBounds(10, 11, 414, 209);
-		pFormulario.setLayout(null);
-		
-		pDatos = new JPanel();
-		pDatos.setBounds(10, 231, 414, 68);
-		pDatos.setLayout(null);
-		
-		pFormulario.add(tCabecera);
-		
-		pFormulario.add(lNombre);
-		pFormulario.add(lApellido1);
-		pFormulario.add(lApellido2);
-		pFormulario.add(comboBoxDNIE);
-		pFormulario.add(lEdad);
-		
-		pFormulario.add(tNombre);
-		pFormulario.add(tApellido1);
-		pFormulario.add(tApellido2);
-		pFormulario.add(tDNIE);
-		pFormulario.add(tEdad);
-		
-		pFormulario.add(bAceptar);
-		pFormulario.add(bLimpiar);	
 
-		pDatos.add(tTituloDatos);
-		pDatos.add(datosIntroducidos);
+	@Override
+	public void actionPerformed(ActionEvent evento) {
 		
-		panelPrincipal.add(pDatos);
-		panelPrincipal.add(pFormulario);
+		if (evento.getSource() == bAceptar) {
+			if (comboBoxDNIE.getSelectedItem().equals("DNI")) {
+				if (validarDni(tDNIE.getText())) {
+					//habilitarTextoDatos();
+					System.out.println();
+				}
+				else {
+					//mostrarMensajeErrorDni();
+				}
+			}
+			else {
+				//habilitarTextoDatos();
+			}
+		}
+		else if (evento.getSource() == bLimpiar) {
+			
+		}
+		
 	}
 	
-	@Override
-	public void actionPerformed(ActionEvent e) {
+	private boolean validarDni(String dni) {
+		
+		boolean 	esCorrecto = true;
+		String	 	numDni;
+		int			numeros;
+		int			total;
+		int			indice;
+		int			numActual;
+		
+		String[] letrasPosibles = {"T", "R", "W", "A", "G", "M", "Y", "F", "P", "D",
+									"X", "B", "N", "J", "Z", "S", "Q", "V", "H", "L",
+									"C", "K", "E"};
+		total = 0;
+		indice = -1;
+		numActual = 0;
+		numeros = -1;
+		if (dni.isBlank() || dni.length() != 9) {
+			esCorrecto = false;
+		}
+		else {
+			numDni = dni.substring(0, 8);
+			try {
+				numeros = Integer.parseInt(numDni);
+			} catch (NumberFormatException errorEntero) {
+				esCorrecto = false;
+			}
+			if (numeros != -1) {
+				
+				while (numeros > 9){
+					numActual = numeros % 10;
+					numeros /= 10;
+					total += numActual;
+				}
+				
+				total += numeros;
+				indice = total / letrasPosibles.length;
+				if (!letrasPosibles[indice].equals(dni.substring(9)) ) {
+					esCorrecto = false;
+				}
+			}
+		}
 		
 		
+		
+		return (esCorrecto);
 	}
 }
