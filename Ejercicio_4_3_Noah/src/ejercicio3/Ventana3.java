@@ -15,6 +15,10 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Color;
 
+/**
+ * Esta clase crea una ventana con un formulario con datos para rellenar por el usuario, que seran ligeramente validados (solo uno de los datos)
+ * y se mostraran en pantalla. 
+ */
 public class Ventana3 extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
@@ -42,10 +46,14 @@ public class Ventana3 extends JFrame implements ActionListener {
 	private JTextField tTituloDatos;
 	private JTextArea tDatosIntroducidos;
 	
+	
 	public Ventana3() {
 		setearPaneles();
 	}
 
+	/**
+	 * Crea los paneles que hay dentro de la ventana
+	 */
 	private void setearPaneles() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 438);
@@ -91,6 +99,9 @@ public class Ventana3 extends JFrame implements ActionListener {
 		panelPrincipal.add(pFormulario);
 	}
 	
+	/**
+	 * Crea el campo de texto que hay como cabecera del formulario
+	 */
 	private void ponerCabecera() {
 		
 		tCabecera = new JTextField();
@@ -101,6 +112,9 @@ public class Ventana3 extends JFrame implements ActionListener {
 		tCabecera.setColumns(10);
 	}
 	
+	/**
+	 * Crear la parte que concierne al formulario de las etiquetas y campo de texto editables
+	 */
 	private void setearTextosFormulario() {
 		
 		String[] opcionesCombo =  {"DNI", "NIE"};
@@ -147,6 +161,9 @@ public class Ventana3 extends JFrame implements ActionListener {
 		comboBoxDNIE.setBounds(29, 118, 51, 22);
 	}
 	
+	/**
+	 * Crea los botones que hay en el formulario
+	 */
 	private void setearBotonesFormulario() {
 		bAceptar = new JButton("Aceptar");
 		bAceptar.setForeground(new Color(34, 139, 34));
@@ -163,6 +180,10 @@ public class Ventana3 extends JFrame implements ActionListener {
 		bLimpiar.addActionListener(this);
 	}
 	
+	/**
+	 * Crea el area de texto donde se reflejarán los datos introducidos una vez ya validados.
+	 * Aquí solo se crea y se pone invisible y no editable para el usuario
+	 */
 	private void setearTextosDatos() {
 		tTituloDatos = new JTextField("Tus datos");
 		tTituloDatos.setFont(new Font("SimSun-ExtG", Font.BOLD | Font.ITALIC, 11));
@@ -178,6 +199,11 @@ public class Ventana3 extends JFrame implements ActionListener {
 		tDatosIntroducidos.setBounds(0, 25, 414, 120);
 	}
 
+	/**
+	 * Gestiona los eventos al clicar cada boto. Si se pulsa el de Aceptar, se validara el dni en caso
+	 * de ser seleccionado en el formulario. Si los datos cumplen con las validaciones, se mostrarán
+	 * en el area de texto, ahora visible.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent evento) {
 		
@@ -210,6 +236,9 @@ public class Ventana3 extends JFrame implements ActionListener {
 		
 	}
 	
+	/**
+	 * Pone visible y muestra los datos que ha introducido el usuario en el formulario
+	 */
 	private void habilitarTextoDatos() {
 		
 		String datos = "";
@@ -224,6 +253,9 @@ public class Ventana3 extends JFrame implements ActionListener {
 		tDatosIntroducidos.setVisible(true);
 	}
 	
+	/**
+	 * Limpia los datos que hubiera en los campos de texto del formulario
+	 */
 	private void limpiarDatos() {
 		tNombre.setText(null);
 		tApellido1.setText(null);
@@ -237,6 +269,11 @@ public class Ventana3 extends JFrame implements ActionListener {
 		tDatosIntroducidos.setVisible(false);
 	}
 	
+	/**
+	 * Este metodo tiene el algoritmo que valida de forma oficial el dni introducido.
+	 * @param dni
+	 * @return
+	 */
 	private boolean validarDni(String dni) {
 		
 		boolean 	esCorrecto = true;

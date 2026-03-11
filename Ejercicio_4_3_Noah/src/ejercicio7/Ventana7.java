@@ -20,6 +20,10 @@ import javax.swing.border.LineBorder;
 import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
 
+/**
+ * Esta clase permite al usuario introducir los datos del contacto que quiera, se validen los datos y se introduzcan en la
+ * agenda siempre que quede espacio disponible.
+ */
 public class Ventana7 extends JFrame implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
@@ -64,6 +68,9 @@ public class Ventana7 extends JFrame implements ActionListener{
 		setearContenidoInicial();
 	}
 	
+	/**
+	 * Crea el panela inicial, el de la tabla y el separador vertical
+	 */
 	private void setearContenidoInicial() {
 		
 		Object[][] contenidoVacioTabla = new Object[][] {
@@ -102,6 +109,10 @@ public class Ventana7 extends JFrame implements ActionListener{
 		panelPrincipal.setFocusTraversalPolicy(new FocusTraversalOnArray(new Component[]{tNombre, tApellidos, tDNI, tTelefono, bAgregarContacto}));
 	}
 
+	/**
+	 * Crea el boton, las etiquetas, los campos de texto, en su estado inicial.
+	 *
+	 */
 	private void crearFormulario() {
 
 		Font fuenteLabels;
@@ -176,6 +187,9 @@ public class Ventana7 extends JFrame implements ActionListener{
 		panelPrincipal.add(bAgregarContacto);
 	}
 	
+	/**
+	 * Crea las etiquetas correspondientes a la tabla de la agenda
+	 */
 	private void crearLabelsTabla() {
 		
 		Font fuenteLabelTabla = new Font("Candara Light", Font.BOLD, 18);
@@ -207,6 +221,11 @@ public class Ventana7 extends JFrame implements ActionListener{
 		panelPrincipal.add(lTbTelefono);	
 	}
 	
+	/**
+	 * Crea una tabla que rellena su modelo de datos segun el array bidimensional que recibe
+	 * aunque su estructura es fija y no valida los datos recibidos
+	 * @param contenidoTabla - los datos que se quiere introducir en las casillas de la tabla
+	 */
 	private void crearJTablaAgenda(Object[][] contenidoTabla) {
 
 		String columnas[] = {"Nombre", "Apellidos", "DNI", "Telefono"};
@@ -239,6 +258,11 @@ public class Ventana7 extends JFrame implements ActionListener{
 		panelTabla.add(tbAgenda);
 	}
 	
+	/**
+	 * Analiza el contenido de la tabla, y mientras haya algo, lo copia en un array de strings bidimensional.
+	 * En caso de no haber nada, o quedar espacio disponible, mandará por terminal un mensaje de que ya no hay nada más por copiar.
+	 * @return
+	 */
 	private String[][] recogerDatos() {
 		
 		String[][] datosLeidos = new String[5][4];
@@ -258,6 +282,11 @@ public class Ventana7 extends JFrame implements ActionListener{
 		return (datosLeidos);
 	}
 	
+	/**
+	 * Revisa el contenido de la tabla para verificar si queda espacio para guardar algún contacto mas.
+	 * @param datos - los datos que tiene la tabla
+	 * @return true si hay espacio disponible, false en caso contrario
+	 */
 	private boolean hayEspacio(String[][] datos) {
 		
 		boolean		hayEspacio = false;
@@ -272,7 +301,12 @@ public class Ventana7 extends JFrame implements ActionListener{
 		
 		return (hayEspacio);
 	}
-	
+	 /**
+	  * Este metodo copia los datos que habia previamente en la tabla y cuando se encuentra con el primer espacio, rellena una 
+	  * fila con los datos introducidos por el usuario
+	  * @param datosOriginales - los datos que habia antes en la tabla
+	  * @return los datos al completo, los previos sumado a los nuevos
+	  */
 	private String[][] actualizarDatos(String[][] datosOriginales){
 	
 		String[][]	datosActualizados = new String[5][4];
@@ -298,6 +332,11 @@ public class Ventana7 extends JFrame implements ActionListener{
 		return (datosActualizados);
 	}
 	
+	/**
+	 * Este metodo valida todos los campos de texto que el usuario debe rellenar para poder guardar un contacto en su agenda.
+	 * Cuando algo no es valido, indica al usuario con un pop up el tipo de error que esta sucediendo.
+	 * @return true si todos los datos son aptos, false en caso contrario
+	 */
 	private boolean datosCorrectos() {
 		boolean todoBien = true;
 		
@@ -373,6 +412,11 @@ public class Ventana7 extends JFrame implements ActionListener{
 		return (todoBien);
 	}
 	
+	/**
+	 * Este metodo gestiona el evento de clicar el boton de agregar contacto, siempre verificando los
+	 * datos y si queda espacio para poder guardar mas contactos en la agenda.
+	 * Cada vez que se guarda uno nuevo, refresca el contenido de la tbala y del panel de la tabla.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent evento) {
 		
