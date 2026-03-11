@@ -13,6 +13,10 @@ import java.awt.Color;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
+/**
+ * Muestra una ventana con un listado de juegos, usando radio buttons para poder clicar uno solo y 
+ * que se muestre en un campo de texto el juego seleccionado. 
+ */
 public class Ventana2 extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
@@ -29,12 +33,28 @@ public class Ventana2 extends JFrame implements ActionListener {
 	private ButtonGroup grupoRbJuegos;
 	
 	public Ventana2() {
+		
+		setearPanelPrincipal();
+		setearLabelsYBotones();
+		setearCampoTexto();
+	}
+
+	/**
+	 * Genera el panel principal de la ventana
+	 */
+	private void setearPanelPrincipal() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		panelPrincipal = new JPanel();
 		panelPrincipal.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(panelPrincipal);
 		panelPrincipal.setLayout(null);
+	}
+	
+	/**
+	 * Genera el texto de cabecera, el grupo de radio buttons, los añade al panel principal.
+	 */
+	private void setearLabelsYBotones() {
 		
 		lTitulo = new JLabel("¿Cuál es el mejor juego?");
 		lTitulo.setForeground(new Color(0, 0, 128));
@@ -74,7 +94,12 @@ public class Ventana2 extends JFrame implements ActionListener {
 		grupoRbJuegos.add(rbJuego2);
 		grupoRbJuegos.add(rbJuego3);
 		grupoRbJuegos.add(rbJuego4);
-		
+	}
+	
+	/**
+	 * General el campo de texto donde se mostrará la selección del juego 
+	 */
+	private void setearCampoTexto() {
 		tSeleccion = new JTextField();
 		tSeleccion.setEditable(false);
 		tSeleccion.setFont(new Font("Yu Gothic UI Semibold", Font.PLAIN, 15));
@@ -82,9 +107,12 @@ public class Ventana2 extends JFrame implements ActionListener {
 		tSeleccion.setBounds(123, 194, 188, 42);
 		panelPrincipal.add(tSeleccion);
 		tSeleccion.setColumns(10);
-
 	}
-
+	
+	/**
+	 * Gestiona los eventos, cuando clica cualquiera de los botones, muestra en el campo de texto
+	 * el contenido del botón seleccionado
+	 */
 	@Override
 	public void actionPerformed(ActionEvent evento) {
 		

@@ -10,6 +10,11 @@ import javax.swing.JTextField;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
+/**
+ * Esta ventana crea una ventana con JFrame usando WindowBuilder.
+ * Usa Absolute Layout, y genera en un panel un campo de texto y un botón.
+ * Cuando se clica el botón cambia el mensaje que aparece en el campo de texto. 
+ */
 public class Ventana0 extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
@@ -18,18 +23,8 @@ public class Ventana0 extends JFrame implements ActionListener {
 	private JButton 	bCambiarTexto;
 
 	
-	public static void mostrarVentana0() {
-		
-		try {
-			Ventana0 frame = new Ventana0();
-			frame.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
 	/**
-	 * Create the frame.
+	 * Constructor que llama a los métodos implicados para crear la ventana
 	 */
 	public Ventana0() {
 		setearMarcoYPanelBase();
@@ -37,6 +32,9 @@ public class Ventana0 extends JFrame implements ActionListener {
 		setearBotonCambiarTexto();
 	}
 
+	/**
+	 * Genera el panel principal
+	 */
 	public void setearMarcoYPanelBase() {
 		
 		contentPane = new JPanel();
@@ -50,6 +48,9 @@ public class Ventana0 extends JFrame implements ActionListener {
 		contentPane.setLayout(null);
 	}
 	
+	/**
+	 * Crea el botón que de esta ventana y lo añade al panel principal
+	 */
 	public void setearBotonCambiarTexto() {
 		bCambiarTexto = new JButton("Cambiar texto");
 		
@@ -60,6 +61,9 @@ public class Ventana0 extends JFrame implements ActionListener {
 		bCambiarTexto.addActionListener(this);
 	}
 	
+	/**
+	 * Crea y añade al panel principal el campo de texto.
+	 */
 	public void setearCampoTexto() {
 		tMensaje = new JTextField();
 		
@@ -74,6 +78,10 @@ public class Ventana0 extends JFrame implements ActionListener {
 		contentPane.add(tMensaje);
 	}
 	
+	/**
+	 * Método sobrescrito de la clase ActionListener para gestionar el evento
+	 * que ocurre al clicar el único botón.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent evento) {
 		
@@ -82,6 +90,9 @@ public class Ventana0 extends JFrame implements ActionListener {
 		}	
 	}
 	
+	/**
+	 * Este método sustituye el contenido del campo de texto por el otro mensaje y viceversa.
+	 */
 	private void cambiarTexto() {
 
 		String heyMsg = "Hey!";

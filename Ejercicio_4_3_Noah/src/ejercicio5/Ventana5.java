@@ -17,6 +17,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JTextArea;
 import java.awt.FlowLayout;
 
+/**
+ * Esta clase permite al usuario indicar cuántos botones desea crear con los números de cada uno, y mientras pulsa cualquiera
+ * de ellos se puede visualizar en un campo de texto cuál es el botón que está pulsando
+ */
 public class Ventana5 extends JFrame implements ActionListener, MouseListener {
 
 	private static final long serialVersionUID = 1L;
@@ -38,6 +42,10 @@ public class Ventana5 extends JFrame implements ActionListener, MouseListener {
 		setearPanelPrincipal();
 	}
 	
+	/**
+	 * Crea el panel principal y el panel tipo scroll donde se encontrarán los botones generados.
+	 * Tambien el boton de crear botones, las etiquetas, los campos de texto. 
+	 */
 	private void setearPanelPrincipal() {
 	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -81,7 +89,11 @@ public class Ventana5 extends JFrame implements ActionListener, MouseListener {
 	}
 
 	
-	
+	/**
+	 * Método que genera un boton con la informacion del número de boton que le corresponde
+	 * @param numDelBoton - numero que le corresponde
+	 * @return boton creado
+	 */
 	private JButton crearBoton(String numDelBoton) {
 		JButton botonNuevo = new JButton(numDelBoton);
 		
@@ -89,6 +101,9 @@ public class Ventana5 extends JFrame implements ActionListener, MouseListener {
 		return (botonNuevo);
 	}
 
+	/**
+	 * Eventos que actualizan el panel donde se ubican los botones generados y pone los indicados nuevos
+	 */
 	@Override
 	public void actionPerformed(ActionEvent evento) {
 		
@@ -139,6 +154,9 @@ public class Ventana5 extends JFrame implements ActionListener, MouseListener {
 		
 	}
 
+	/**
+	 * Evendo que gestiona que mientras se pulse un botón, indicará qué botón se está pulsando
+	 */
 	@Override
 	public void mousePressed(MouseEvent evento) {
 
@@ -156,6 +174,9 @@ public class Ventana5 extends JFrame implements ActionListener, MouseListener {
 		
 	}
 
+	/**
+	 * Limpia el campo de texto donde se mostraba el boton que se estaba pulsando
+	 */
 	@Override
 	public void mouseReleased(MouseEvent evento) {
 		

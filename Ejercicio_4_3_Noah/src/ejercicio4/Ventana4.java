@@ -12,6 +12,9 @@ import java.awt.Font;
 import java.awt.Color;
 import javax.swing.JButton;
 
+/**
+ * Esta clase crea una ventana con un carrusel de 6 fotos de EuskalHerria
+ */
 public class Ventana4 extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
@@ -34,6 +37,9 @@ public class Ventana4 extends JFrame implements ActionListener {
 		setearPanelPrincipal();
 	}
 
+	/**
+	 * Crea el panel principal con las etiquetas que componen la cabecera, la foto mostrada en pantalla y los botones.
+	 */
 	private void setearPanelPrincipal() {
 		
 		JLabel lTitulo1;
@@ -83,6 +89,9 @@ public class Ventana4 extends JFrame implements ActionListener {
 		setBotones();
 	}
 	
+	/**
+	 * Crea los botones necesarios para avanzar o retroceder en la secuencia de fotos.
+	 */
 	private void setBotones() {
 		
 		bPrimera = new JButton("Primera");
@@ -115,6 +124,10 @@ public class Ventana4 extends JFrame implements ActionListener {
 		bUltima.addActionListener(this);
 	}
 
+	/**
+	 * Gestiona los eventos de los botones e inhabilita los correspondientes dependiendo de en qué foto
+	 * se posicione el usuario.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent evento) {
 		
@@ -166,6 +179,10 @@ public class Ventana4 extends JFrame implements ActionListener {
 		}
 	}
 	
+	/*
+	 * Este método cambia cual es la foto que se muestra segun se le indique por parametro en qué dirección
+	 * moverse dentro del carrusel.
+	 */
 	private void cambiarFoto(int operacion) {
 		
 		int			indice = obtenerIndiceRuta();
@@ -191,6 +208,10 @@ public class Ventana4 extends JFrame implements ActionListener {
 		panelPrincipal.add(lFoto);
 	}
 	
+	/**
+	 * Este metodo analiza en que indice se encuentra antes de ver si puede cambiar de foto.
+	 * @return
+	 */
 	private int obtenerIndiceRuta() {
 		
 		String 	rutaActual = foto.getDescription();

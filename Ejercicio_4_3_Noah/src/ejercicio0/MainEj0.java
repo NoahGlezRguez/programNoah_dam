@@ -4,7 +4,12 @@ public class MainEj0 {
 
 	public static void main(String[] args) {
 	
-		Ventana0.mostrarVentana0();
+		try {
+			Ventana0 frame = new Ventana0();
+			frame.setVisible(true);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	
 	}
 }

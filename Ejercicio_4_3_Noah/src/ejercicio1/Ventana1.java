@@ -13,6 +13,10 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 
+/**
+ * Esta clase gestiona una ventana básica de login. Si se introduce 'admin' en los dos campos
+ * mandará un mensaje por pantalla de bienvenida y si no, de error.
+ */
 public class Ventana1 extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
@@ -21,20 +25,15 @@ public class Ventana1 extends JFrame implements ActionListener {
 	private JTextField tClave;
 	private JButton bValidar;
 
-	public static void mostrarVentana1() {
-		
-		try {
-			Ventana1 frame = new Ventana1();
-			frame.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 
 	public Ventana1() {
 		setearMarcoYPanelBase();
 	}
 	
+	/**
+	 * Crea el panel principal, los campos de texto, las etiquetas de los campos de texto,
+	 * y el botón para iniciar sesión.
+	 */
 	public void setearMarcoYPanelBase() {
 		
 		contentPane = new JPanel();
@@ -79,6 +78,12 @@ public class Ventana1 extends JFrame implements ActionListener {
 		contentPane.add(bValidar);
 	}
 
+	/**
+	 * Método sobrescrito de ActionListener para gestionar el evento de clicar el botón de login
+	 * con la validacion del contenido (admin, admin) y un mensaje de respuesta en cada caso.
+	 * Si coincide, muestra un pop up con un mensaje de bienvenida.
+	 * Si no, de error.
+	 */
 	@Override
 	public void actionPerformed(ActionEvent evento) {
 

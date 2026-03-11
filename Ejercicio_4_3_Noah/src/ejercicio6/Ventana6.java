@@ -11,6 +11,9 @@ import java.awt.Color;
 import javax.swing.JMenuBar;
 import javax.swing.JButton;
 
+/**
+ * Clase que crea una ventana con varios paneles que cambian su visibilidad conforme se selecciona desde un menu tipo barra
+ */
 public class Ventana6 extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
@@ -31,6 +34,9 @@ public class Ventana6 extends JFrame implements ActionListener {
 	}
 
 
+	/**
+	 * crea todos los paneles y selecciona la visibilidad incial de cada uno de ellos
+	 */
 	private void setearPaneles() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 823, 600);
@@ -56,6 +62,9 @@ public class Ventana6 extends JFrame implements ActionListener {
 		pVerde.setVisible(false);
 	}
 
+	/**
+	 * Crea el menu tipo barra con sus botones correspondientes
+	 */
 	private void setearBotones() {
 		
 		barmenuVentanas = new JMenuBar();
@@ -73,6 +82,9 @@ public class Ventana6 extends JFrame implements ActionListener {
 		bPanel3.addActionListener(this);
 	}
 	
+	/**
+	 * Gestiona el evento de que cada boton configure la visibilidad de los paneles como corresponda
+	 */
 	@Override
 	public void actionPerformed(ActionEvent evento) {
 		
