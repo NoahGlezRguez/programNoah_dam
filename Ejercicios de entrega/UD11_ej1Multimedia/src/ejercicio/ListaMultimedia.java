@@ -25,26 +25,40 @@ public class ListaMultimedia {
 		return (contador);
 	}
 	
-	public boolean add(Multimedia objeto) {
+	public boolean add(Multimedia m) {
 		boolean hayEspacio = false;
 		
 		if (contador < lista.length) {
 			hayEspacio = true;
-			lista[contador++] = objeto;
+			lista[contador++] = m;
 		}
 		
 		return (hayEspacio);
 	}
 	
-	public Multimedia localizarObj(int indice) {
+	public Multimedia localizarObj(int position) {
 
 		Multimedia objetoIndicado = null;
 		
-		if (indice >= 0 || indice < contador) {
-			objetoIndicado = lista[indice];
+		if (position >= 0 || position < contador) {
+			objetoIndicado = lista[position];
 		}
 		
 		return (objetoIndicado);
 	}
+
+	@Override
+	public String toString() {
+		
+		String info = "";
+		
+		for (int i = 0; i < contador; i++) {
+			info += lista[i].toString();
+		}
+		
+		return (info);
+	}
+	
+	
 }
 

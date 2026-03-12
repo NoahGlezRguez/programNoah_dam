@@ -5,10 +5,15 @@ public class Pelicula extends Multimedia {
 	private String actorPrincipal;
 	private String actrizPrincipal;
 	
-	public Pelicula() {
-		
-	}
-	
+	/**
+	 * Crea una Pelicula
+	 * @param actorPrincipal
+	 * @param actrizPrincipal
+	 * @param titulo
+	 * @param autor
+	 * @param formato
+	 * @param duracion
+	 */
 	public Pelicula(String actorPrincipal, String actrizPrincipal, String titulo, String autor, Formato formato, int duracion) {
 		
 		super(titulo, autor, formato, duracion);
@@ -41,8 +46,8 @@ public class Pelicula extends Multimedia {
 
 	@Override
 	public String toString() {
-		return String.format("Pelicula [actorPrincipal = %s, actrizPrincipal = %s, %s]", actorPrincipal,
-				actrizPrincipal, super.toString());
+		return String.format("Pelicula: actorPrincipal = %s, actrizPrincipal = %s, título = %s, autor/a = %s.\n",
+				actorPrincipal, actrizPrincipal, super.getTitulo(), super.getAutor());
 	}
 
 	/*****************************************************************************************************/
