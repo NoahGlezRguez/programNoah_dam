@@ -23,28 +23,23 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 	
 	private JTextField txtNumero = new JTextField(10);
 	private JTextField txtNombre = new JTextField(25);
-	private JTextField txtLocalidad = new JTextField(25);
-	
-	//string numdep = getText de txtNumero
-	//string nomdep = getText de txtNombre
-	//string localidep = getText de txtLocalidad
-	/*
-	 * La idea seria leer si los datos son correctos para luego operar mas rapidamente con estos datos
-	 * evitando asi declarar las mismas variables en cada metodo xd
-	 * */
-	
+	private JTextField txtLocalidad = new JTextField(25);	
 
-	private JLabel 	lMensajeInformativo = new JLabel(" ----------------------------- ");//revisar esto mas tarde // MUY cuesitonable
+	private JLabel 		lMensajeInformativo = new JLabel(" ----------------------------- ");//revisar esto mas tarde // MUY cuesitonable
 
 	private JButton 	bInsertar = new JButton("Insertar Depart.");
-	private JButton	bConsultar = new JButton("Consultar Depart.");
+	private JButton		bConsultar = new JButton("Consultar Depart.");
 	private JButton 	bBorrar = new JButton("Borrar Depart.");
 	private JButton 	bLimpiarDatos = new JButton("Limpiar datos");
 	private JButton 	bModificar = new JButton("Modificar Departamento");
 	private JButton 	bVerEnConsola = new JButton("Ver por consola");
 	private JButton 	bCerrar = new JButton("CERRAR");
 	
-	private static int numDepart; //cuestionable
+	private int 		numDep;
+	private String		nomDep;
+	private String		localiDep;
+	
+	 //cuestionable
 	
 	public Simplificada_Noah(JFrame marcoVentana) {
 		
@@ -114,7 +109,6 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 	
 	public void actionPerformed(ActionEvent evento) {
 		
-		int		numDepart = -1;
 		int		confirmacion;
 		boolean	existe;
 		
@@ -144,26 +138,28 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 					gestionarErrorNoExiste();
 				}
 				else {
-	
+					nomDep = txtNombre.getText();
+					localiDep = txtLocalidad.getText();
+					
 					if (evento.getSource() == bInsertar) {
 					
-						guardarDepart(numDepart, txtNombre.getText(), txtLocalidad.getText());						
+						operarSobreFichero(2);						
 						lMensajeInformativo.setText("NUEVO DEPARTAMENTO GRABADO.");
 					}
 					else if (evento.getSource() == bConsultar) {				
-						visualizarDepart(numDepart);				
+						operarSobreFichero(3);				
 					}
 			
 					else if (evento.getSource() == bBorrar) {
-						visualizarDepart(numDepart);
+						operarSobreFichero(0);
 						
 						confirmacion = JOptionPane.showConfirmDialog(this, "ESTAS SEGURO DE BORRAR...",
 								"AVISO BORRADO.", JOptionPane.OK_CANCEL_OPTION);
 						
 						// si devuelve 0 es OK
 						if (confirmacion == 0) {
-							borrarDepart(numDepart);
-							lMensajeInformativo.setText(" REGISTRO BORRADO: " + numDepart);						
+							operarSobreFichero(0);
+							lMensajeInformativo.setText(" REGISTRO BORRADO: " + numDep);						
 							limpiarDatos(0);
 						}					
 					}				
@@ -174,8 +170,8 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 							
 						// si devuelve 0 es OK
 						if (confirmacion == 0) {
-							modificarDepart(numDepart);
-							lMensajeInformativo.setText(" REGISTRO MODIFICADO: " + numDepart);
+							operarSobreFichero(1);
+							lMensajeInformativo.setText(" REGISTRO MODIFICADO: " + numDep);
 						}	
 					}				
 					
@@ -207,9 +203,9 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 		boolean esCorrecto = false;
 		
 		try {
-			numDepart = Integer.parseInt(txtNumero.getText());
+			numDep = Integer.parseInt(txtNumero.getText());
 			
-			if (numDepart > 0) {
+			if (numDep > 0) {
 				esCorrecto = true;
 			}
 			else {
@@ -228,7 +224,7 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 		boolean existe = true;
 		
 		try {
-			if (consultarDepart(numDepart)) {
+			if (consultarDepart()) {
 				lMensajeInformativo.setText("DEPARTAMENTO EXISTE");
 			}
 		} catch (FileNotFoundException excepNoExiste) {
@@ -282,14 +278,14 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 			System.out.println(" ---------FICHERO VAC�O --------------------");
 	}
 
-	boolean consultarDepart(int dep) throws IOException {
+	boolean consultarDepart() throws IOException {
 		long pos;
 		int depa;
 		File fichero = new File("AleatorioDep.dat");
 		RandomAccessFile file = new RandomAccessFile(fichero, "r");
 		// Calculo del reg a leer
 		
-			pos = 44 * (dep - 1);
+			pos = 44 * (numDep - 1);
 			if (file.length() == 0) {
 				file.close();
 				return false; // si est� vac�o
@@ -305,121 +301,83 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 				return false;
 		
 	} // fin consultar
-
-	void visualizarDepart(int dep) {
-		String nom = "", loca = "";
-		long pos;
-		int depa;
-		File fichero = new File("AleatorioDep.dat");
-		try {
-			RandomAccessFile file = new RandomAccessFile(fichero, "r");
-			// Calculo del reg a leer
-			pos = 44 * (dep - 1);
-			file.seek(pos);
-			depa = file.readInt();
-			System.out.println("Depart leido:" + depa);
-			char nom1[] = new char[10], aux, loc1[] = new char[10];
-			for (int i = 0; i < 10; i++) {
-				aux = file.readChar();
-				nom1[i] = aux;
-			}
-			for (int i = 0; i < 10; i++) {
-				aux = file.readChar();
-				loc1[i] = aux;
-			}
-			nom = new String(nom1);
-			loca = new String(loc1);
-			System.out.println("DEP: " + dep + ", Nombre: " + nom + ", Localidad: " + loca);
-			txtNombre.setText(nom);
-			txtLocalidad.setText(loca);
-			file.close();
-		} catch (IOException e1) {
-			System.out.println("ERROR AL LEER AleatorioDep.dat");
-			e1.printStackTrace();
-		}
-	} // fin visualiza
-
-	void borrarDepart(int numDepart) { // con borrar ponemos a 0 el dep que se quiere borrar
-							// y a blancos el nombre y la localidad
-		String nom = "", loca = "";
-		StringBuffer buffer = null;
+	
+	//0 borrar, 1 modificar, 2 crear, 3 leer
+	private void operarSobreFichero(int operacion) {
+		
 		long pos;
 		File fichero = new File("AleatorioDep.dat");
 		try {
-			RandomAccessFile file = new RandomAccessFile(fichero, "rw");
-			// Calculo del reg a leer
-			pos = 44 * (numDepart - 1);
-			file.seek(pos);
-			int depp = 0;
-			file.writeInt(depp);
-			buffer = new StringBuffer(nom);
-			buffer.setLength(10);
-			file.writeChars(buffer.toString());
-
-			buffer = new StringBuffer(loca);
-			buffer.setLength(10);
-			file.writeChars(buffer.toString());
-			System.out.println("----REGISTRO BORRADO--------");
-
-			file.close();
-		} catch (IOException e1) {
-			System.out.println("ERRROR AL BORRAR AleatorioDep.dat");
-			e1.printStackTrace();
-		}
-	} 
-
-	void modificarDepart(int dep) { // con modificar asignamos los datos tecleados
-		String nom = "", loca = "";
-		StringBuffer buffer = null;
-		long pos;
-		File fichero = new File("AleatorioDep.dat");
-		try {
-			RandomAccessFile file = new RandomAccessFile(fichero, "rw");
-			// Calculo del reg a leer
-			pos = 44 * (dep - 1);
-			file.seek(pos);
-			file.writeInt(dep);
-			nom = txtNombre.getText();
-			loca = txtLocalidad.getText();
-			buffer = new StringBuffer(nom);
-			buffer.setLength(10);
-			file.writeChars(buffer.toString());
-			buffer = new StringBuffer(loca);
-			buffer.setLength(10);
-			file.writeChars(buffer.toString());
-			System.out.println("----REGISTRO MODIFICADO--------");
-
-			file.close();
-		} catch (IOException e1) {
-			System.out.println("ERRROR AL MODIFICAR AleatorioDep.dat");
-			e1.printStackTrace();
-		}
-	} 
-
-	void guardarDepart(int numDep, String nombreDep, String localizacionDep) {
-		long pos;
-		StringBuffer buffer = null;
-		File fichero = new File("AleatorioDep.dat");
-		try {
-			RandomAccessFile file = new RandomAccessFile(fichero, "rw");
+			RandomAccessFile archivo = new RandomAccessFile(fichero, "rw");
 			// Calculo del reg a leer
 			pos = 44 * (numDep - 1);
-			// if (file.length()==0) return false; // si est� vac�o
-
-			file.seek(pos);
-			file.writeInt(numDep);
-			buffer = new StringBuffer(nombreDep);
-			buffer.setLength(10);
-			file.writeChars(buffer.toString());// insertar nombre
-			buffer = new StringBuffer(localizacionDep);
-			buffer.setLength(10);
-			file.writeChars(buffer.toString());// insertar loc
-			file.close();
-			System.out.println(" GRABADO el " + numDep);
+			archivo.seek(pos);
+			if (operacion == 0) {
+				archivo.write(0);
+				escribirEnFichero(archivo, null);
+			}
+			else if (operacion == 1 || operacion == 2){
+				archivo.write(numDep);
+				escribirEnFichero(archivo, nomDep);
+				escribirEnFichero(archivo, localiDep);
+			}
+			else {
+				System.out.println("Depart leido:" + numDep);
+				nomDep = "";
+				localiDep = "";
+				for (int i = 0; i < 10; i++) {
+					nomDep += archivo.readChar();
+				}
+				for (int i = 0; i < 10; i++) {
+					localiDep += archivo.readChar();
+				}
+				mostrarLectura();
+			}
+			
+			if (operacion == 0) {
+				System.out.println("----REGISTRO BORRADO--------");
+			} else if (operacion == 1) {
+				System.out.println("----REGISTRO MODIFICADO--------");
+			} else {
+				System.out.println(" GRABADO el " + numDep);
+			}
+			archivo.close();
 		} catch (IOException e1) {
-			System.out.println("ERRROR AL grabar AleatorioDep.dat");
+			if (operacion == 0) {
+				System.out.println("ERRROR AL BORRAR AleatorioDep.dat");
+			}
+			else if (operacion == 1) {
+				System.out.println("ERRROR AL MODIFICAR AleatorioDep.dat");
+			} else if (operacion == 2) {
+				System.out.println("ERRROR AL grabar AleatorioDep.dat");
+			} else if (operacion == 3) {
+				System.out.println("ERROR AL LEER AleatorioDep.dat");
+			}
 			e1.printStackTrace();
 		}
-	} 
+	}
+	
+	private void escribirEnFichero(RandomAccessFile archivo, String texto) throws IOException {
+
+		StringBuffer buffer = null;
+
+		if (texto != null) {
+			buffer = new StringBuffer(texto);
+			buffer.setLength(10);
+			archivo.writeChars(buffer.toString());
+		}
+		else {
+			archivo.writeChars(" ".repeat(20));
+		}
+		
+	}
+
+	private void mostrarLectura() {
+		
+		System.out.println("DEP: " + numDep + ", Nombre: " + nomDep + ", Localidad: " + localiDep);
+		txtNumero.setText(String.valueOf(numDep));
+		txtNombre.setText(nomDep);
+		txtLocalidad.setText(localiDep);
+	}
 }
 
