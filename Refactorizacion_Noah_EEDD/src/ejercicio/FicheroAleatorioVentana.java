@@ -10,16 +10,16 @@ public class FicheroAleatorioVentana {
 
 	public static void main(String[] args) throws IOException {
 
-		JFrame jFrame = new JFrame("DEPARTAMENTOS.");
+		JFrame ventanaDep = new JFrame("DEPARTAMENTOS.");
 
 		// Nos aseguramos que el fichero exista para evitar posibles errores
 		File fichero = new File("AleatorioDep.dat");
 
-		RandomAccessFile file;
-		file = new RandomAccessFile(fichero, "rw");
-		file.close();
+		RandomAccessFile archivo;
+		archivo = new RandomAccessFile(fichero, "rw");
+		archivo.close();
 
-		VentanaDepartamento ventanaDepart = new VentanaDepartamento(jFrame);
+		VentanaDepartamento ventanaDepart = new VentanaDepartamento(ventanaDep);
 		ventanaDepart.setVisible(true);
 	}
 }

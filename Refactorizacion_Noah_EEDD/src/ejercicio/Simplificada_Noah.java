@@ -20,40 +20,41 @@ import javax.swing.WindowConstants;
 public class Simplificada_Noah extends JFrame implements ActionListener {
 
 	private static final long	serialVersionUID = 1L;
-	private static final String	TITULO_VENTANA = "GESTIÓN DE DEPARTAMENTOS.";
 	
 	private JTextField txtNumero = new JTextField(10);
 	private JTextField txtNombre = new JTextField(25);
 	private JTextField txtLocalidad = new JTextField(25);
-
-	private JLabel lMensajeInformativo = new JLabel(" ----------------------------- ");//revisar esto mas tarde
-	private JLabel lTitulo = new JLabel("GESTIÓN DE DEPARTAMENTOS");
-	private JLabel lNumero = new JLabel("NÚMERO DEPARTAMENTO:");
-	private JLabel lNombre = new JLabel("NOMBRE:");
-	private JLabel lLocalidad = new JLabel("LOCALIDAD:");
-
-	private JButton bInsertar = new JButton("Insertar Depart.");
-	private JButton bConsultar = new JButton("Consultar Depart.");
-	private JButton bBorrar = new JButton("Borrar Depart.");
-	private JButton bLimpiarDatos = new JButton("Limpiar datos");
-	private JButton bModificar = new JButton("Modificar Departamento");
-	private JButton bVerEnConsola = new JButton("Ver por consola");
-	private JButton bCerrar = new JButton("CERRAR");
 	
-	private static int numDepart;
+	//string numdep = getText de txtNumero
+	//string nomdep = getText de txtNombre
+	//string localidep = getText de txtLocalidad
+	/*
+	 * La idea seria leer si los datos son correctos para luego operar mas rapidamente con estos datos
+	 * evitando asi declarar las mismas variables en cada metodo xd
+	 * */
+	
+
+	private JLabel 	lMensajeInformativo = new JLabel(" ----------------------------- ");//revisar esto mas tarde // MUY cuesitonable
+
+	private JButton 	bInsertar = new JButton("Insertar Depart.");
+	private JButton	bConsultar = new JButton("Consultar Depart.");
+	private JButton 	bBorrar = new JButton("Borrar Depart.");
+	private JButton 	bLimpiarDatos = new JButton("Limpiar datos");
+	private JButton 	bModificar = new JButton("Modificar Departamento");
+	private JButton 	bVerEnConsola = new JButton("Ver por consola");
+	private JButton 	bCerrar = new JButton("CERRAR");
+	
+	private static int numDepart; //cuestionable
 	
 	public Simplificada_Noah(JFrame marcoVentana) {
 		
-		setTitle(TITULO_VENTANA);
-		
-		iniciarPaneles();
-		
+		setTitle("GESTIÓN DE DEPARTAMENTOS.");	
+		iniciarPanelesConEtiquetas();	
 		setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
 		iniciarBotones();
 	}
 
-	public void iniciarPaneles() {
+	public void iniciarPanelesConEtiquetas() {
 		
 		JPanel	pCabecera;
 		JPanel	pNumeroDepart;
@@ -62,6 +63,11 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 		JPanel	pOperacionesDepart;
 		JPanel	pOperacionesVentana;
 		JPanel	pMensajeInferior;
+
+		JLabel lTitulo = new JLabel("GESTIÓN DE DEPARTAMENTOS");
+		JLabel lNumero = new JLabel("NÚMERO DEPARTAMENTO:");
+		JLabel lNombre = new JLabel("NOMBRE:");
+		JLabel lLocalidad = new JLabel("LOCALIDAD:");
 		
 		pCabecera = new JPanel();
 		pNumeroDepart = new JPanel();		
@@ -110,112 +116,90 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 		
 		int		numDepart = -1;
 		int		confirmacion;
-		boolean	esCorrecto;
 		boolean	existe;
 		
-		//Analizar previamente si el valor introducido es correcto y consultar si existe
-		esCorrecto = validarDatosIntroducidos();	
-
-		if (esCorrecto) {
+		informarBotonClickado(((JButton)evento.getSource()).getText());
 			
-			existe = verificarExistencia();	
-			
-			if (evento.getSource() == bInsertar) {
-				informarBotonClickado("Insertar");
-				
-				if (!existe) {
-					lMensajeInformativo.setText("NUEVO DEPARTAMENTO.");
-					
-					guardarDepart(numDepart, txtNombre.getText(), txtLocalidad.getText());
-					
-					lMensajeInformativo.setText("NUEVO DEPARTAMENTO GRABADO.");
-				}
+		if (evento.getSource() == bCerrar) { 
+			System.exit(0);
+		}
+		else if (evento.getSource() == bVerEnConsola) { 
+			try {
+				lMensajeInformativo.setText("Visualizando el fichero por la consola.....");
+				verPorConsola();
+			} catch (IOException e1) {
+				System.out.println("ERROR AL LEER AleatorioDep.dat");
 			}
+		}		
+		else if (evento.getSource() == bLimpiarDatos) {
+			limpiarDatos(1);
+		}
+		else {
+			
+			if (validarDatosIntroducidos()) {
+				
+				existe = verificarExistencia();		
+		
+				if (!existe && evento.getSource() != bInsertar) {
+					gestionarErrorNoExiste();
+				}
+				else {
 	
-			else if (evento.getSource() == bConsultar) {
-				informarBotonClickado("Consultar");
-				
-				if (existe) {
-					visualizarDepart(numDepart);
-				} else {
-					lMensajeInformativo.setText("DEPARTAMENTO NO EXISTE");
+					if (evento.getSource() == bInsertar) {
 					
-					txtNombre.setText(null);
-					txtLocalidad.setText(null);
-				}
-			}
-	
-			else if (evento.getSource() == bBorrar) {
-				informarBotonClickado("Borrar");
-				
-				if (existe) {
-					visualizarDepart(numDepart);
-					
-					confirmacion = JOptionPane.showConfirmDialog(this, "ESTAS SEGURO DE BORRAR...",
-							"AVISO BORRADO.", JOptionPane.OK_CANCEL_OPTION);
-					
-					// si devuelve 0 es OK
-					if (confirmacion == 0) {
-						borrarDepart(numDepart);
-						
-						lMensajeInformativo.setText(" REGISTRO BORRADO: " + numDepart);
-						
-						txtNombre.setText(null);
-						txtLocalidad.setText(null);
+						guardarDepart(numDepart, txtNombre.getText(), txtLocalidad.getText());						
+						lMensajeInformativo.setText("NUEVO DEPARTAMENTO GRABADO.");
 					}
-				} else {
-					lMensajeInformativo.setText("DEPARTAMENTO NO EXISTE.");
-					txtNombre.setText(null);
-					txtLocalidad.setText(null);
-				}
-			}
-			
-			else if (evento.getSource() == bModificar) {
-				informarBotonClickado("Modificar.");
-				
-				if (existe) {
-					confirmacion = JOptionPane.showConfirmDialog(this, "ESTAS SEGURO DE MODIFICAR...",
-							"AVISO MODIFICACIÓN.", JOptionPane.OK_CANCEL_OPTION);
-					
-					// si devuelve 0 es OK
-					if (confirmacion == 0) {
-						modificarDepart(numDepart);
-						lMensajeInformativo.setText(" REGISTRO MODIFICADO: " + numDepart);
+					else if (evento.getSource() == bConsultar) {				
+						visualizarDepart(numDepart);				
 					}
-				} else {
-					lMensajeInformativo.setText("DEPARTAMENTO NO EXISTE.");
+			
+					else if (evento.getSource() == bBorrar) {
+						visualizarDepart(numDepart);
+						
+						confirmacion = JOptionPane.showConfirmDialog(this, "ESTAS SEGURO DE BORRAR...",
+								"AVISO BORRADO.", JOptionPane.OK_CANCEL_OPTION);
+						
+						// si devuelve 0 es OK
+						if (confirmacion == 0) {
+							borrarDepart(numDepart);
+							lMensajeInformativo.setText(" REGISTRO BORRADO: " + numDepart);						
+							limpiarDatos(0);
+						}					
+					}				
+					else if (evento.getSource() == bModificar) {
+											
+						confirmacion = JOptionPane.showConfirmDialog(this, "ESTAS SEGURO DE MODIFICAR...",
+									"AVISO MODIFICACIÓN.", JOptionPane.OK_CANCEL_OPTION);
+							
+						// si devuelve 0 es OK
+						if (confirmacion == 0) {
+							modificarDepart(numDepart);
+							lMensajeInformativo.setText(" REGISTRO MODIFICADO: " + numDepart);
+						}	
+					}				
 					
-					txtNombre.setText(null);
-					txtLocalidad.setText(null);
 				}
-					
-			}
-			
-			else if (evento.getSource() == bCerrar) { 
-				System.exit(0);
-			}
-			
-			else if (evento.getSource() == bVerEnConsola) { 
-				try {
-					lMensajeInformativo.setText("Visualizando el fichero por la consola.....");
-					verPorConsola();
-				} catch (IOException e1) {
-					System.out.println("ERROR AL LEER AleatorioDep.dat");
-				}
-			}
-			
-			else if (evento.getSource() == bLimpiarDatos) {
-				informarBotonClickado("Limpiar.");
-				
-				txtNumero.setText(null);
-				txtNombre.setText(null);
-				txtLocalidad.setText(null);
 			}
 		}
 	}
 
-	private void informarBotonClickado(String boton) {
-		lMensajeInformativo.setText("Has pulsado el botón ".concat(boton));
+	private void limpiarDatos(int caso) {
+		
+		if (caso == 1) {
+			txtNumero.setText(null);
+		}
+		txtNombre.setText(null);
+		txtLocalidad.setText(null);
+	}
+	
+	private void gestionarErrorNoExiste() {
+		lMensajeInformativo.setText("DEPARTAMENTO NO EXISTE.");
+		limpiarDatos(0);
+	}
+	
+	private void informarBotonClickado(String botonPulsado) {
+		lMensajeInformativo.setText("Has pulsado el botón ".concat(botonPulsado));
 	}
 	
 	private boolean validarDatosIntroducidos() {
@@ -257,45 +241,46 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 		return (existe);
 	}
 	
+	//esta fumada esta fatal
 	public void verPorConsola() throws IOException, FileNotFoundException {
-		String nom = "", loc = "";
-		int dep = 0;
-		long pos;
+		String nombreDep = "", localizacionDep = "";
+		int numDep = 0;
+		long indice;
 		File fichero = new File("AleatorioDep.dat");
-		RandomAccessFile file = new RandomAccessFile(fichero, "r");
+		RandomAccessFile archivo = new RandomAccessFile(fichero, "r");
 		char cad[] = new char[10], aux;
 		
-		if (file.length() > 0) {
-			pos = 0; // para situarnos al principio
+		if (archivo.length() > 0) {
+			indice = 0; // para situarnos al principio
 			System.out.println(" ------------------------------------------");
 			System.out.println(" - - - VISUALIZO POR CONSOLA ");
 			for (;;) { // recorro el fichero, visualiza tambi�n las posiciones vac�as
-				file.seek(pos);
-				dep = file.readInt(); // obtengo el dep
+				archivo.seek(indice);
+				numDep = archivo.readInt(); // obtengo el dep
 				for (int i = 0; i < cad.length; i++) {
-					aux = file.readChar();// recorro uno a uno los caracteres del apellido
+					aux = archivo.readChar();// recorro uno a uno los caracteres del apellido
 					cad[i] = aux; // los voy guardando en el array
 				}
-				nom = new String(cad);// convierto a String el array
+				nombreDep = new String(cad);// convierto a String el array
 				for (int i = 0; i < cad.length; i++) {
-					aux = file.readChar();
+					aux = archivo.readChar();
 					cad[i] = aux;
 				}
-				loc = new String(cad);// convierto a String el array
-				System.out.println("DEP: " + dep + ", Nombre: " + nom + ", Localidad: " + loc);
-				pos = pos + 44;
+				localizacionDep = new String(cad);// convierto a String el array
+				System.out.println("DEP: " + numDep + ", Nombre: " + nombreDep + ", Localidad: " + localizacionDep);
+				indice = indice + 44;
 				// Si he recorrido todos los bytes salgo del for
-				if (file.getFilePointer() == file.length()) {
-					file.close();
+				if (archivo.getFilePointer() == archivo.length()) {
+					archivo.close();
 					break;
 				}
 			}
 			
-			file.close(); // cerrar fichero
+			archivo.close(); // cerrar fichero
 			System.out.println(" ------------------------------------------");
-		} else // esto s�lo sale la primera vez
+		} else // esto s�lo sale la primera vez //pero que dices machango
 			System.out.println(" ---------FICHERO VAC�O --------------------");
-	}// fin verporconsola
+	}
 
 	boolean consultarDepart(int dep) throws IOException {
 		long pos;
@@ -381,7 +366,7 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 			System.out.println("ERRROR AL BORRAR AleatorioDep.dat");
 			e1.printStackTrace();
 		}
-	} // fin borrar
+	} 
 
 	void modificarDepart(int dep) { // con modificar asignamos los datos tecleados
 		String nom = "", loca = "";
@@ -409,28 +394,28 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 			System.out.println("ERRROR AL MODIFICAR AleatorioDep.dat");
 			e1.printStackTrace();
 		}
-	} // fin modificar
+	} 
 
-	void guardarDepart(int dep, String nom, String loc) {
+	void guardarDepart(int numDep, String nombreDep, String localizacionDep) {
 		long pos;
 		StringBuffer buffer = null;
 		File fichero = new File("AleatorioDep.dat");
 		try {
 			RandomAccessFile file = new RandomAccessFile(fichero, "rw");
 			// Calculo del reg a leer
-			pos = 44 * (dep - 1);
+			pos = 44 * (numDep - 1);
 			// if (file.length()==0) return false; // si est� vac�o
 
 			file.seek(pos);
-			file.writeInt(dep);
-			buffer = new StringBuffer(nom);
+			file.writeInt(numDep);
+			buffer = new StringBuffer(nombreDep);
 			buffer.setLength(10);
 			file.writeChars(buffer.toString());// insertar nombre
-			buffer = new StringBuffer(loc);
+			buffer = new StringBuffer(localizacionDep);
 			buffer.setLength(10);
 			file.writeChars(buffer.toString());// insertar loc
 			file.close();
-			System.out.println(" GRABADO el " + dep);
+			System.out.println(" GRABADO el " + numDep);
 		} catch (IOException e1) {
 			System.out.println("ERRROR AL grabar AleatorioDep.dat");
 			e1.printStackTrace();
