@@ -16,7 +16,7 @@ public class Disco extends Multimedia {
 	@Override
 	public String toString() {
 		
-		String info = super.toString().concat("Genero del disco = ".concat(String.valueOf(genero)));
+		String info = super.toString().concat("\tGenero del disco = ".concat(String.valueOf(genero)));
 		
 		return (info);
 	}

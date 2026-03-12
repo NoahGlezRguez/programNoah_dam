@@ -46,7 +46,7 @@ public class Multimedia {
 
 	@Override
 	public String toString() {
-		return String.format("Multimedia: titulo = %s, autor = %s, formato = %s, duracion = %s.\n", titulo, autor, formato,
+		return String.format("\nMultimedia: titulo = %s, autor = %s, formato = %s, duracion = %s.\n", titulo, autor, formato,
 				duracion);
 	}
 

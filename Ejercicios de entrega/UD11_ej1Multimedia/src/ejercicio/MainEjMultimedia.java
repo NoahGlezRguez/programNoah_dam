@@ -2,10 +2,8 @@ package ejercicio;
 
 public class MainEjMultimedia {
 
-	public static void main(String[] args) {
-		
-		//Parte 1
-		/*
+	
+	private static void ej1() {
 		ListaMultimedia multi = new ListaMultimedia(10);
 		
 		Pelicula peli1 = new Pelicula("Eliot Page", "Kristen Stewart", "Slay", "LP", Formato.mov, 120);
@@ -16,8 +14,18 @@ public class MainEjMultimedia {
 		multi.add(peli2);
 		multi.add(peli3);
 		
-		System.out.println(multi.toString());*/
+		System.out.println(multi.toString());
+	}
+	
+	
+	
+	
+	
+	public static void main(String[] args) {
 		
+		//Parte 1
+		ej1();
+				
 		//Parte 2
 		ListaMultimedia multi2 = new ListaMultimedia(20);
 		
