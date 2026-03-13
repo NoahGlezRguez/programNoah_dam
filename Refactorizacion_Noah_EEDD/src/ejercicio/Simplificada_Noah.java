@@ -17,6 +17,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
+
+//Error al leer: consultar mas de lo existente --> lo perdi al refactorizar... fix urgente!! relacionado con .seek
+
+//las traces estan en los catch del original o los debo quitar????
+
 public class Simplificada_Noah extends JFrame implements ActionListener {
 
 	private static final long	serialVersionUID = 1L;
@@ -45,7 +50,7 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 	private String	nomDep;
 	private String	localiDep;
 	
-	
+	private Archivo archivoDatos;
 	
 	public Simplificada_Noah(JFrame marcoVentana) {
 		
@@ -250,21 +255,22 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 			RandomAccessFile archivo = new RandomAccessFile(fichero, "rw");
 			archivo.seek(ANCHO_LINEA * (numDep - 1));
 			if (operacion == 0) {
-				escribirEnFichero(archivo, true);
+				archivoDatos.borrarRegistro(numDep);
 				System.out.println("----REGISTRO BORRADO--------");
 				lMensajeInformativo.setText(" REGISTRO BORRADO: " + numDep);						
 				limpiarDatos(0);
 			}
 			
-			else if (operacion == 1 || operacion == 2){
-				escribirEnFichero(archivo, false);
-				if (operacion == 1) {
-					System.out.println("----REGISTRO MODIFICADO--------");
-					lMensajeInformativo.setText(" REGISTRO MODIFICADO: " + numDep);
-				} else {
-					System.out.println(" GRABADO el " + numDep);
-					lMensajeInformativo.setText("NUEVO DEPARTAMENTO GRABADO.");
-				}
+			else if (operacion == 1) {
+				archivoDatos.modificarRegistro(numDep, nomDep, localiDep, false);
+				System.out.println("----REGISTRO MODIFICADO--------");
+				lMensajeInformativo.setText(" REGISTRO MODIFICADO: " + numDep);
+			}
+			
+			else if (operacion == 2){
+				archivoDatos.modificarRegistro(numDep, nomDep, localiDep, true);
+				System.out.println(" GRABADO el " + numDep);
+				lMensajeInformativo.setText("NUEVO DEPARTAMENTO GRABADO.");
 			}
 			
 			else {
@@ -289,46 +295,14 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 		
 		System.out.println(errores[indice]);
 	}
-	
-	private void escribirEnFichero(RandomAccessFile archivo, boolean hayQueBorrar) throws IOException {
 
-		if (!hayQueBorrar) {
-			archivo.writeInt(numDep);
-			if (nomDep == null) {
-				nomDep = " ".repeat(10);
-			}
-			if (localiDep == null) {
-				localiDep = " ".repeat(10);
-			}
-			escribirDato(archivo, nomDep, 10);
-			escribirDato(archivo, localiDep, 10);
-		}
-		else {
-			archivo.writeInt(0);
-			archivo.writeChars(" ".repeat(20));
-		}
-	}
-	
-	private void escribirDato(RandomAccessFile archivo, String dato, int ancho) throws IOException {
-		StringBuffer buffer = null;
-		
-		buffer = new StringBuffer(dato);
-		buffer.setLength(ancho);
-		archivo.writeChars(buffer.toString());
-	}
 	
 	private void mostrarTupla(RandomAccessFile archivo) throws IOException {
-		nomDep = leerDatoDeFichero(archivo);
-		localiDep = leerDatoDeFichero(archivo);
+		archivoDatos.prepararArchivo(numDep);
+		nomDep = archivoDatos.recogerCampo();
+		localiDep = archivoDatos.recogerCampo();
 		System.out.println("DEP: " + numDep + ", Nombre: " + nomDep + ", Localidad: " + localiDep);
 	}
 	
 	
-	private String leerDatoDeFichero(RandomAccessFile archivo) throws IOException {
-		String dato = "";
-		for (int i = 0; i < 10; i++) {
-			dato += archivo.readChar();
-		}
-		return (dato);
-	}
 }
