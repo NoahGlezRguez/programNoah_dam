@@ -129,22 +129,22 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 					nomDep = txtNombre.getText();
 					localiDep = txtLocalidad.getText();
 					
-					if (evento.getSource() == bInsertar) {					
+					if (evento.getSource() == bBorrar && pedirConfirmacion("ESTÁS SEGURO DE BORRAR...", "AVISO BORRADO.") == 0) {
+						operarSobreFichero(0);
+					}	
+					
+					else if (evento.getSource() == bModificar && pedirConfirmacion("ESTÁS SEGURO DE MODIFICAR...", "AVISO MODIFICACIÓN.") == 0) {										
+						operarSobreFichero(1);	
+					}
+					
+					else if (evento.getSource() == bInsertar) {					
 						operarSobreFichero(2);												
 					}
 					
 					else if (evento.getSource() == bConsultar) {				
 						operarSobreFichero(3);				
 					}
-			
-					else if (evento.getSource() == bBorrar && pedirConfirmacion("ESTÁS SEGURO DE BORRAR...", "AVISO BORRADO.") == 0) {
-						operarSobreFichero(0);
-					}			
-					
-					else if (evento.getSource() == bModificar && pedirConfirmacion("ESTÁS SEGURO DE MODIFICAR...", "AVISO MODIFICACIÓN.") == 0) {										
-						operarSobreFichero(1);	
-					}	
-					
+
 				}
 			}
 		}
@@ -262,6 +262,7 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 			}
 			
 			else {
+				archivo.readInt();
 				System.out.println("Depart leido:" + numDep);
 				mostrarTupla(archivo);
 				txtNumero.setText(String.valueOf(numDep));
@@ -286,12 +287,18 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 	private void escribirEnFichero(RandomAccessFile archivo, boolean hayQueBorrar) throws IOException {
 
 		if (!hayQueBorrar) {
-			archivo.write(numDep);
+			archivo.writeInt(numDep);
+			if (nomDep == null) {
+				nomDep = " ".repeat(10);
+			}
+			if (localiDep == null) {
+				localiDep = " ".repeat(10);
+			}
 			escribirDato(archivo, nomDep, 10);
 			escribirDato(archivo, localiDep, 10);
 		}
 		else {
-			archivo.write(0);
+			archivo.writeInt(0);
 			archivo.writeChars(" ".repeat(20));
 		}
 	}
