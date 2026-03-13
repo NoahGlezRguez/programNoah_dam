@@ -20,6 +20,12 @@ import javax.swing.WindowConstants;
 public class Simplificada_Noah extends JFrame implements ActionListener {
 
 	private static final long	serialVersionUID = 1L;
+	private static final int ANCHO_LINEA = 44;
+	private static final int BORRAR = 0;
+	private static final int MODIFICAR = 1;
+	private static final int INSERTAR = 2;
+	private static final int CONSULTAR = 3;
+	
 	
 	private JTextField txtNumero = new JTextField(10);
 	private JTextField txtNombre = new JTextField(25);
@@ -39,7 +45,7 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 	private String	nomDep;
 	private String	localiDep;
 	
-	private final int ANCHO_LINEA = 44;
+	
 	
 	public Simplificada_Noah(JFrame marcoVentana) {
 		
@@ -130,19 +136,19 @@ public class Simplificada_Noah extends JFrame implements ActionListener {
 					localiDep = txtLocalidad.getText();
 					
 					if (evento.getSource() == bBorrar && pedirConfirmacion("ESTÁS SEGURO DE BORRAR...", "AVISO BORRADO.") == 0) {
-						operarSobreFichero(0);
+						operarSobreFichero(BORRAR);
 					}	
 					
 					else if (evento.getSource() == bModificar && pedirConfirmacion("ESTÁS SEGURO DE MODIFICAR...", "AVISO MODIFICACIÓN.") == 0) {										
-						operarSobreFichero(1);	
+						operarSobreFichero(MODIFICAR);	
 					}
 					
 					else if (evento.getSource() == bInsertar) {					
-						operarSobreFichero(2);												
+						operarSobreFichero(INSERTAR);												
 					}
 					
 					else if (evento.getSource() == bConsultar) {				
-						operarSobreFichero(3);				
+						operarSobreFichero(CONSULTAR);				
 					}
 
 				}
