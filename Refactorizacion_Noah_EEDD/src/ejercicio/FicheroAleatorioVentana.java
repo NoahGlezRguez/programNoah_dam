@@ -19,7 +19,7 @@ public class FicheroAleatorioVentana {
 		archivo = new RandomAccessFile(fichero, "rw");
 		archivo.close();
 
-		VentanaDepartamento ventanaDepart = new VentanaDepartamento(ventanaDep);
+		Simplificada_Noah ventanaDepart = new Simplificada_Noah(ventanaDep);
 		ventanaDepart.setVisible(true);
 	}
 }
