@@ -39,7 +39,7 @@ public class MainEjMultimedia {
 		
 		System.out.println(multi2.toString());
 		
-		Disco disco4 = new Disco("Caja Negra", "Carmen Boza", null, null, 0);
+		//Disco disco4 = new Disco("Caja Negra", "Carmen Boza", null, null, 0);
 		
 	}
 
