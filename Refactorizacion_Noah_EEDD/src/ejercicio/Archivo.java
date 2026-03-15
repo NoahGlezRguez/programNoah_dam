@@ -18,24 +18,34 @@ public class Archivo {
 		
 	}
 	
-	private RandomAccessFile abrir() throws FileNotFoundException {
+	public RandomAccessFile abrir() {
 		
 		String ruta = "AleatorioDep.dat";
 		
 		fichero = new File(ruta);
-		archivo = new RandomAccessFile(fichero, "rw");
+		try {
+			archivo = new RandomAccessFile(fichero, "rw");
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
 		
 		return (archivo);
+	}
+	
+	public void cerrar() {
+		try {
+			archivo.close();
+		} catch (IOException errorCerrar) {
+			errorCerrar.printStackTrace();
+		}
 	}
 	
 	public void borrarRegistro(int numDep) {
 		
 		try {
-			archivo = abrir();
 			archivo.seek(ANCHO_LINEA * (numDep - 1));
 			archivo.writeInt(0);
 			archivo.writeChars(" ".repeat(ANCHO_CAMPO * 2));
-			archivo.close();
 			
 		} catch (IOException e) {
 			System.out.println("ERRROR AL BORRAR AleatorioDep.dat");
@@ -45,12 +55,10 @@ public class Archivo {
 	
 	public void modificarRegistro(int numDep, String nomDep, String localiDep, boolean esInsertar) {
 		try {
-			archivo = abrir();
 			archivo.seek(ANCHO_LINEA * (numDep - 1));
 			modificarCampo(numDep);
 			modificarCampo(nomDep);
 			modificarCampo(localiDep);
-			archivo.close();
 			
 		} catch (IOException e) {
 			if (esInsertar) {
@@ -78,15 +86,6 @@ public class Archivo {
 		archivo.writeChars(buffer.toString());
 	}
 	
-	public void mostrarRegistro(int numDep) {
-		try {
-			archivo = abrir();
-			archivo.seek(ANCHO_LINEA * (numDep - 1));
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 	
 	public String recogerCampo() {
 		
@@ -103,22 +102,10 @@ public class Archivo {
 		}
 		return (dato);
 	}
+
 	
-	public RandomAccessFile prepararArchivo(int numDep) {
-		try {
-			archivo = abrir();
-			archivo.seek(ANCHO_LINEA * (numDep - 1));
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public RandomAccessFile getArchivo() {
 		return (archivo);
 	}
-	
-//	private void mostrarError(int indice) {
-//		
-//		String[] errores = {"ERRROR AL MODIFICAR AleatorioDep.dat", "ERRROR AL grabar AleatorioDep.dat", "ERROR AL LEER AleatorioDep.dat"};
-//		
-//		System.out.println(errores[indice]);
-//	}
+
 }
