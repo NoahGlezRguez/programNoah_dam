@@ -4,6 +4,13 @@ import java.util.ArrayList;
 
 public class MainPrograma {
 
+	/*
+	 * 
+	 * PENDIENTE DE CAMBIAR:
+	 * 				PONER LOS OBJETOS COMO ARRAY
+	 * 				MOSTRAR DESDE POSICIONES DE ARRAY
+	 * 
+	 * */
 	public static void main(String[] args) {
 		
 		Planeta venus;
