@@ -1,13 +1,11 @@
 package ejercicio;
 
-import java.util.Date;
-
 public class Gato extends Mascota {
 
 	private String color;
 	private boolean peloLargo;
 
-	public Gato(String nombre, int edad, boolean estado, Date fechaNacimiento, String color, boolean peloLargo) {
+	public Gato(String nombre, int edad, boolean estado, String fechaNacimiento, String color, boolean peloLargo) {
 		super(nombre, edad, estado, fechaNacimiento);
 		this.color = color;
 		this.peloLargo = peloLargo;
@@ -15,12 +13,12 @@ public class Gato extends Mascota {
 
 	@Override
 	public void muestra() {
-		
+		System.out.println(toString());
 	}
 
 	@Override
 	public void habla() {
-		
+		System.out.println("Grrrrmiaw, miaaaaaw");
 	}
 
 	@Override
@@ -35,7 +33,7 @@ public class Gato extends Mascota {
 			peloLargo = "no";
 		}
 		
-		return String.format("Color: %s\nPelo largo: %s\n", color, peloLargo);
+		return ("Gato:\n" + super.toString() + String.format("\t- Color: %s\n\t- Pelo largo: %s\n", color, peloLargo));
 	}
 	
 	

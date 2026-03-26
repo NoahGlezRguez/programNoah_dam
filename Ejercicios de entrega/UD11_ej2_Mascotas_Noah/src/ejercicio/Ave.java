@@ -1,13 +1,11 @@
 package ejercicio;
 
-import java.util.Date;
-
 public abstract class Ave extends Mascota{
 
 	private String pico;
 	private boolean vuela;
 	
-	public Ave(String nombre, int edad, boolean estado, Date fechaNacimiento, String pico, boolean vuela) {
+	public Ave(String nombre, int edad, boolean estado, String fechaNacimiento, String pico, boolean vuela) {
 		super(nombre, edad, estado, fechaNacimiento);
 		this.pico = pico;
 		this.vuela = vuela;
@@ -26,7 +24,7 @@ public abstract class Ave extends Mascota{
 			vuela = "no";
 		}
 		
-		return String.format("Pico: %s\nVuela: %s\n", pico, vuela);
+		return String.format(super.toString() + "\t- Pico: %s\n\t- Vuela: %s\n", pico, vuela);
 	}
 
 	public abstract void volar();

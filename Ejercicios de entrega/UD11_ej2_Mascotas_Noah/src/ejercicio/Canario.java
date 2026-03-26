@@ -1,12 +1,10 @@
 package ejercicio;
 
-import java.util.Date;
-
 public class Canario extends Ave {
 	private String color;
 	private boolean canta;
 		
-	public Canario(String nombre, int edad, boolean estado, Date fechaNacimiento, String pico, boolean vuela,
+	public Canario(String nombre, int edad, boolean estado, String fechaNacimiento, String pico, boolean vuela,
 			String color, boolean canta) {
 		super(nombre, edad, estado, fechaNacimiento, pico, vuela);
 		this.color = color;
@@ -17,14 +15,17 @@ public class Canario extends Ave {
 	public void volar() {
 		
 	}
+	
 	@Override
 	public void muestra() {
-		
+		System.out.println(toString());
 	}
+	
 	@Override
 	public void habla() {
 		
 	}
+	
 	@Override
 	public String toString() {
 		
@@ -37,7 +38,7 @@ public class Canario extends Ave {
 			canta = "no";
 		}
 		
-		return String.format("Color: %s\nCanta: %s\n", color, canta);
+		return ("Canario:\n" + super.toString() + String.format("\t- Color: %s\n\t- Canta: %s\n", color, canta));
 	}
 	
 	

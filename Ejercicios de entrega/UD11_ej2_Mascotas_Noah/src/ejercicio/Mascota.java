@@ -1,14 +1,12 @@
 package ejercicio;
 
-import java.util.Date;
-
 public abstract class Mascota {
 	private String nombre;
 	private int edad;
 	private boolean estado;
-	private Date fechaNacimiento;
+	private String fechaNacimiento;
 	
-	public Mascota(String nombre, int edad, boolean estado, Date fechaNacimiento) {
+	public Mascota(String nombre, int edad, boolean estado, String fechaNacimiento) {
 		this.nombre = nombre;
 		this.edad = edad;
 		this.estado = estado;
@@ -18,7 +16,7 @@ public abstract class Mascota {
 	public abstract void muestra();
 	
 	public void cumpleanios() {
-		
+		System.out.println("El cumpleaños de " + nombre + "es el " + fechaNacimiento.substring(0, 5));
 	}
 	
 	public void morir() {
@@ -41,7 +39,7 @@ public abstract class Mascota {
 			estado = "muerto";
 		}
 		
-		return String.format("Nombre: %s\nEdad: %s\n Estado: %s\nFecha de nacimiento: %s\n",
+		return String.format("\t- Nombre: %s\n\t- Edad: %s\n\t- Estado: %s\t- \nFecha de nacimiento: %s\n",
 				nombre, edad, estado,fechaNacimiento);
 	}
 
