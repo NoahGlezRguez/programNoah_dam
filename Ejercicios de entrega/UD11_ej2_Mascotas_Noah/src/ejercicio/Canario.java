@@ -12,18 +12,6 @@ public class Canario extends Ave {
 		this.color = color;
 		this.canta = canta;
 	}
-	public String getColor() {
-		return color;
-	}
-	public void setColor(String color) {
-		this.color = color;
-	}
-	public boolean isCanta() {
-		return canta;
-	}
-	public void setCanta(boolean canta) {
-		this.canta = canta;
-	}
 	
 	@Override
 	public void volar() {
@@ -36,6 +24,20 @@ public class Canario extends Ave {
 	@Override
 	public void habla() {
 		
+	}
+	@Override
+	public String toString() {
+		
+		String canta;
+		
+		if (this.canta) {
+			canta = "sí";
+		}
+		else {
+			canta = "no";
+		}
+		
+		return String.format("Color: %s\nCanta: %s\n", color, canta);
 	}
 	
 	

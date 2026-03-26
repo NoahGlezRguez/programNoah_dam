@@ -12,18 +12,7 @@ public class Perro extends Mascota {
 		this.raza = raza;
 		this.pulgas = pulgas;
 	}
-	public String getRaza() {
-		return raza;
-	}
-	public void setRaza(String raza) {
-		this.raza = raza;
-	}
-	public boolean isPulgas() {
-		return pulgas;
-	}
-	public void setPulgas(boolean pulgas) {
-		this.pulgas = pulgas;
-	}
+	
 	@Override
 	public void muestra() {
 		
@@ -33,6 +22,20 @@ public class Perro extends Mascota {
 	public void habla() {
 		
 	}
+	
+	@Override
+	public String toString() {
+		String pulgas;
+		
+		if (this.pulgas) {
+			pulgas = "sí";
+		}
+		else {
+			pulgas = "no";
+		}
+		return String.format("Raza: %s\nPulgas: %s\n", raza, pulgas);
+	}
+	
 	
 	
 }

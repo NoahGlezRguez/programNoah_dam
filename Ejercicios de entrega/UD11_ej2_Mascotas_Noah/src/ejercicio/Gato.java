@@ -12,20 +12,7 @@ public class Gato extends Mascota {
 		this.color = color;
 		this.peloLargo = peloLargo;
 	}
-	
-	public String getColor() {
-		return color;
-	}
-	public void setColor(String color) {
-		this.color = color;
-	}
-	public boolean isPeloLargo() {
-		return peloLargo;
-	}
-	
-	public void setPeloLargo(boolean peloLargo) {
-		this.peloLargo = peloLargo;
-	}
+
 	@Override
 	public void muestra() {
 		
@@ -34,6 +21,21 @@ public class Gato extends Mascota {
 	@Override
 	public void habla() {
 		
+	}
+
+	@Override
+	public String toString() {
+		
+		String peloLargo;
+		
+		if (this.peloLargo) {
+			peloLargo = "sí";
+		}
+		else {
+			peloLargo = "no";
+		}
+		
+		return String.format("Color: %s\nPelo largo: %s\n", color, peloLargo);
 	}
 	
 	

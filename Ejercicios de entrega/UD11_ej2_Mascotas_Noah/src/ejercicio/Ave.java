@@ -14,21 +14,20 @@ public abstract class Ave extends Mascota{
 		
 	}
 
-	public String getPico() {
-		return pico;
+	@Override
+	public String toString() {
+		
+		String vuela;
+		
+		if (this.vuela) {
+			vuela = "sí";
+		}
+		else {
+			vuela = "no";
+		}
+		
+		return String.format("Pico: %s\nVuela: %s\n", pico, vuela);
 	}
 
-	public void setPico(String pico) {
-		this.pico = pico;
-	}
-
-	public boolean isVuela() {
-		return vuela;
-	}
-
-	public void setVuela(boolean vuela) {
-		this.vuela = vuela;
-	}
-	
 	public abstract void volar();
 }

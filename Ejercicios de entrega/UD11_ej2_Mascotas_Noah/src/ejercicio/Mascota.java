@@ -22,41 +22,27 @@ public abstract class Mascota {
 	}
 	
 	public void morir() {
-		
+		estado = false;
 	}
 	
 	public abstract void habla();
 	
-	public String getNombre() {
-		return nombre;
+
+
+	@Override
+	public String toString() {
+		
+		String estado;
+		
+		if (this.estado) {
+			estado = "vivo";
+		}
+		else {
+			estado = "muerto";
+		}
+		
+		return String.format("Nombre: %s\nEdad: %s\n Estado: %s\nFecha de nacimiento: %s\n",
+				nombre, edad, estado,fechaNacimiento);
 	}
-	
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-	
-	public int getEdad() {
-		return edad;
-	}
-	
-	public void setEdad(int edad) {
-		this.edad = edad;
-	}
-	
-	public boolean isEstado() {
-		return estado;
-	}
-	
-	public void setEstado(boolean estado) {
-		this.estado = estado;
-	}
-	
-	public Date getFechaNacimiento() {
-		return fechaNacimiento;
-	}
-	
-	public void setFechaNacimiento(Date fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
-	}
-	
+
 }

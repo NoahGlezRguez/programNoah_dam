@@ -13,18 +13,6 @@ public class Loro extends Ave{
 		this.origen = origen;
 		this.habla = habla;
 	}
-	public String getOrigen() {
-		return origen;
-	}
-	public void setOrigen(String origen) {
-		this.origen = origen;
-	}
-	public boolean isHabla() {
-		return habla;
-	}
-	public void setHabla(boolean habla) {
-		this.habla = habla;
-	}
 	
 	@Override
 	public void volar() {
@@ -42,5 +30,19 @@ public class Loro extends Ave{
 	public void saluda() {
 		
 	}
+	@Override
+	public String toString() {
+		
+		String habla;
+		
+		if (this.habla) {
+			habla = "sí";
+		}
+		else {
+			habla = "no";
+		}
+		return String.format("Origen: %s\nHabla: %s\n", origen, habla);
+	}
+	
 	
 }
