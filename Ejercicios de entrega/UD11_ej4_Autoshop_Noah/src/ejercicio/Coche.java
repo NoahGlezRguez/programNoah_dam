@@ -22,9 +22,6 @@ public class Coche {
 		return color;
 	}
 
-	public void setPrecio(double precio) {
-		this.precio = precio;
-	}
 
 	public double getPrecio() {
 		return (precio);

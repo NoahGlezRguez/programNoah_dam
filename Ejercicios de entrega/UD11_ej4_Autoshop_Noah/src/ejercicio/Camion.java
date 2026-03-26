@@ -37,5 +37,6 @@ public class Camion extends Coche{
 				""".formatted(peso, getPrecio(), getVelocidad(), getColor()));
 	}
 
+	//no se utiliza en el main
 	
 }
