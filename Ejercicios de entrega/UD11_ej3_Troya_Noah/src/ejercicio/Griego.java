@@ -14,7 +14,7 @@ public class Griego extends Guerrero {
 	@Override
 	public boolean retirarse() {
 		
-		System.out.print(toString() + "RETIRADA");	
+		System.out.print(toString() + " ⇾ RETIRADA");	
 
 		return false;
 	}
@@ -26,10 +26,10 @@ public class Griego extends Guerrero {
 				getEdad(), getFuerza());
 		
 		if (super.isHerido()) {
-			datos += "Está herido ⇾ ";
+			datos += "Está herido";
 		}
 		else {
-			datos += "No está herido ⇾ ";
+			datos += "No está herido";
 		}
 		
 		return (datos);

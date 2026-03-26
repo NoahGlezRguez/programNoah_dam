@@ -13,7 +13,7 @@ public class Troyano extends Guerrero{
 	@Override
 	public boolean retirarse() {
 		
-		System.out.print(toString() + "Los Guerreros Troyanos NUNCA se retiran!!!");	
+		System.out.print(toString() + " ⇾ Los Guerreros Troyanos NUNCA se retiran!!!");	
 
 		return false;
 	}
@@ -25,10 +25,10 @@ public class Troyano extends Guerrero{
 				getEdad(), getFuerza());
 		
 		if (super.isHerido()) {
-			datos += "Está herido ⇾ ";
+			datos += "Está herido";
 		}
 		else {
-			datos += "No está herido ⇾ ";
+			datos += "No está herido";
 		}
 		
 		return (datos);
