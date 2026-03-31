@@ -39,7 +39,7 @@ public abstract class Mascota {
 			estado = "muerto";
 		}
 		
-		return String.format("\t- Nombre: %s\n\t- Edad: %s\n\t- Estado: %s\t- \nFecha de nacimiento: %s\n",
+		return String.format("\t- Nombre: %s\n\t- Edad: %s\n\t- Estado: %s\n\t- Fecha de nacimiento: %s\n",
 				nombre, edad, estado,fechaNacimiento);
 	}
 

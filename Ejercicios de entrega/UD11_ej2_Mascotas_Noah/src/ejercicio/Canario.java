@@ -13,7 +13,7 @@ public class Canario extends Ave {
 	
 	@Override
 	public void volar() {
-		
+		System.out.println("...frrrrrr... frrrrrrrr..frr frrr.... *vuela*");
 	}
 	
 	@Override
@@ -23,7 +23,7 @@ public class Canario extends Ave {
 	
 	@Override
 	public void habla() {
-		
+		System.out.println("fiufiiiiiiiiiii... fiufiiiiiiii... fiufiufiufiiiiii");
 	}
 	
 	@Override

@@ -26,7 +26,7 @@ public class Loro extends Ave{
 	}
 	
 	public void saluda() {
-		
+		System.out.println("Kaixo pendejooooos aaah aupaaaa");
 	}
 	@Override
 	public String toString() {
