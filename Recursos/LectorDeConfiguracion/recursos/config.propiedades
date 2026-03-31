@@ -1,5 +1,0 @@
-url=jdbc:mysql://
-ip=10.5.6.200
-port=3306
-user=root
-password=desde_recursos
