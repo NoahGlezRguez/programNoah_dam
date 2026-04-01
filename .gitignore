@@ -1,12 +1,14 @@
-
+# Archivos por extensión en cualquier subdirectorio
 *.class
+*.dat
+*.metadata
+
+# Archivos específicos de configuración (recursivos, para cualquier proyecto)
+.classpath
+.project
 desktop.ini
 
-*.metadata
-*.classpath
-*.project
-*.settings/org.eclipse.core.resources.prefs
-*.dat
-/bin/
-/metadata/
-
+# Carpetas completas en cualquier nivel (sin la barra inicial, importante)
+bin/
+metadata/
+.settings/
