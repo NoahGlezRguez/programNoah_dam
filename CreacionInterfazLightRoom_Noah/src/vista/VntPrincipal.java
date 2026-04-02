@@ -38,221 +38,221 @@ public class VntPrincipal extends JFrame {
 		JMenuBar menuBar = new JMenuBar();
 		pnlSuperior.add(menuBar);
 		
-		JMenu mnNewMenu = new JMenu("File");
-		menuBar.add(mnNewMenu);
+		JMenu mn1 = new JMenu("Archivo");
+		menuBar.add(mn1);
 		
-		JMenuItem mntmNewMenuItem = new JMenuItem("New menu item");
-		mnNewMenu.add(mntmNewMenuItem);
+		JMenuItem mnFile1 = new JMenuItem("Nuevo catálogo...");
+		mn1.add(mnFile1);
 		
-		JMenuItem mntmNewMenuItem_1 = new JMenuItem("New menu item");
-		mnNewMenu.add(mntmNewMenuItem_1);
+		JMenuItem mnFile2 = new JMenuItem("Abrir catálogo...");
+		mn1.add(mnFile2);
 		
-		JMenuItem mntmNewMenuItem_2 = new JMenuItem("New menu item");
-		mnNewMenu.add(mntmNewMenuItem_2);
+		JMenuItem mnFile3 = new JMenuItem("Optimizar catálogo...");
+		mn1.add(mnFile3);
 		
-		JMenuItem mntmNewMenuItem_3 = new JMenuItem("New menu item");
-		mnNewMenu.add(mntmNewMenuItem_3);
+		JMenuItem mnFile4 = new JMenuItem("Importar perfiles y ajustes...");
+		mn1.add(mnFile4);
 		
-		JMenuItem mntmNewMenuItem_4 = new JMenuItem("New menu item");
-		mnNewMenu.add(mntmNewMenuItem_4);
+		JMenuItem mnFile5 = new JMenuItem("Exportar como catálogo...");
+		mn1.add(mnFile5);
 		
-		JMenuItem mntmNewMenuItem_5 = new JMenuItem("New menu item");
-		mnNewMenu.add(mntmNewMenuItem_5);
+		JMenuItem mnFile6 = new JMenuItem("Actualizar configuración de lentes...");
+		mn1.add(mnFile6);
 		
-		JMenuItem mntmNewMenuItem_6 = new JMenuItem("New menu item");
-		mnNewMenu.add(mntmNewMenuItem_6);
+		JMenuItem mnFile7 = new JMenuItem("Configuración de catálogo...");
+		mn1.add(mnFile7);
 		
 		JSeparator separator = new JSeparator();
-		mnNewMenu.add(separator);
+		mn1.add(separator);
 		
-		JMenuItem mntmNewMenuItem_7 = new JMenuItem("New menu item");
-		mnNewMenu.add(mntmNewMenuItem_7);
+		JMenuItem mnFile8 = new JMenuItem("Importar fotos y vídeos...");
+		mn1.add(mnFile8);
 		
-		JMenuItem mntmNewMenuItem_8 = new JMenuItem("New menu item");
-		mnNewMenu.add(mntmNewMenuItem_8);
+		JMenuItem mnFile9 = new JMenuItem("Importar desde otro catálogo...");
+		mn1.add(mnFile9);
 		
-		JMenuItem mntmNewMenuItem_9 = new JMenuItem("New menu item");
-		mnNewMenu.add(mntmNewMenuItem_9);
+		JMenuItem mnFile10 = new JMenuItem("Exportar con ajuste anterior");
+		mn1.add(mnFile10);
 		
-		JMenuItem mntmNewMenuItem_10 = new JMenuItem("New menu item");
-		mnNewMenu.add(mntmNewMenuItem_10);
+		JMenuItem mnFile11 = new JMenuItem("Exportar...");
+		mn1.add(mnFile11);
 		
-		JMenuItem mntmNewMenuItem_11 = new JMenuItem("New menu item");
-		mnNewMenu.add(mntmNewMenuItem_11);
+		JMenuItem mnFile12 = new JMenuItem("Exportar en DNG");
+		mn1.add(mnFile12);
 		
 		JSeparator separator_1 = new JSeparator();
-		mnNewMenu.add(separator_1);
+		mn1.add(separator_1);
 		
-		JMenuItem mntmNewMenuItem_12 = new JMenuItem("New menu item");
-		mnNewMenu.add(mntmNewMenuItem_12);
+		JMenuItem mnFile13 = new JMenuItem("Enviar por correo electrónico...");
+		mn1.add(mnFile13);
 		
 		JSeparator separator_2 = new JSeparator();
-		mnNewMenu.add(separator_2);
+		mn1.add(separator_2);
 		
-		JMenuItem mntmNewMenuItem_13 = new JMenuItem("New menu item");
-		mnNewMenu.add(mntmNewMenuItem_13);
+		JMenuItem mnFile14 = new JMenuItem("Mostrar en Finder/Explorador");
+		mn1.add(mnFile14);
 		
-		JMenuItem mntmNewMenuItem_14 = new JMenuItem("New menu item");
-		mnNewMenu.add(mntmNewMenuItem_14);
+		JMenuItem mnFile15 = new JMenuItem("Abrir en Photoshop...");
+		mn1.add(mnFile15);
 		
-		JMenuItem mntmNewMenuItem_15 = new JMenuItem("New menu item");
-		mnNewMenu.add(mntmNewMenuItem_15);
+		JMenuItem mnFile16 = new JMenuItem("Abrir en aplicación...");
+		mn1.add(mnFile16);
 		
 		JSeparator separator_3 = new JSeparator();
-		mnNewMenu.add(separator_3);
+		mn1.add(separator_3);
 		
-		JMenuItem mntmNewMenuItem_16 = new JMenuItem("New menu item");
-		mnNewMenu.add(mntmNewMenuItem_16);
+		JMenuItem mnFile17 = new JMenuItem("Configuración de la impresión...");
+		mn1.add(mnFile17);
 		
-		JMenuItem mntmNewMenuItem_17 = new JMenuItem("New menu item");
-		mnNewMenu.add(mntmNewMenuItem_17);
+		JMenuItem mnFile18 = new JMenuItem("Imprimir...");
+		mn1.add(mnFile18);
 		
 		JSeparator separator_4 = new JSeparator();
-		mnNewMenu.add(separator_4);
+		mn1.add(separator_4);
 		
-		JMenuItem mntmNewMenuItem_18 = new JMenuItem("New menu item");
-		mnNewMenu.add(mntmNewMenuItem_18);
+		JMenuItem mnFile19 = new JMenuItem("Salir");
+		mn1.add(mnFile19);
 		
-		JMenu mnNewMenu_1 = new JMenu("Edit");
-		menuBar.add(mnNewMenu_1);
+		JMenu mn2 = new JMenu("Edición");
+		menuBar.add(mn2);
 		
-		JMenuItem mntmNewMenuItem_19 = new JMenuItem("New menu item");
-		mnNewMenu_1.add(mntmNewMenuItem_19);
+		JMenuItem mnEdit1 = new JMenuItem("Deshacer");
+		mn2.add(mnEdit1);
 		
-		JMenuItem mntmNewMenuItem_20 = new JMenuItem("New menu item");
-		mnNewMenu_1.add(mntmNewMenuItem_20);
+		JMenuItem mnEdit2 = new JMenuItem("Rehacer");
+		mn2.add(mnEdit2);
 		
 		JSeparator separator_5 = new JSeparator();
-		mnNewMenu_1.add(separator_5);
+		mn2.add(separator_5);
 		
-		JMenuItem mntmNewMenuItem_21 = new JMenuItem("New menu item");
-		mnNewMenu_1.add(mntmNewMenuItem_21);
+		JMenuItem mnEdit3 = new JMenuItem("Cortar");
+		mn2.add(mnEdit3);
 		
-		JMenuItem mntmNewMenuItem_22 = new JMenuItem("New menu item");
-		mnNewMenu_1.add(mntmNewMenuItem_22);
+		JMenuItem mnEdit4 = new JMenuItem("Copiar");
+		mn2.add(mnEdit4);
 		
-		JMenuItem mntmNewMenuItem_23 = new JMenuItem("New menu item");
-		mnNewMenu_1.add(mntmNewMenuItem_23);
+		JMenuItem mnEdit5 = new JMenuItem("Pegar");
+		mn2.add(mnEdit5);
 		
 		JSeparator separator_6 = new JSeparator();
-		mnNewMenu_1.add(separator_6);
+		mn2.add(separator_6);
 		
-		JMenuItem mntmNewMenuItem_24 = new JMenuItem("New menu item");
-		mnNewMenu_1.add(mntmNewMenuItem_24);
+		JMenuItem mnEdit6 = new JMenuItem("Eliminar foto de Lightroom...");
+		mn2.add(mnEdit6);
 		
-		JMenuItem mntmNewMenuItem_25 = new JMenuItem("New menu item");
-		mnNewMenu_1.add(mntmNewMenuItem_25);
+		JMenuItem mnEdit7 = new JMenuItem("Eliminar foto del disco...");
+		mn2.add(mnEdit7);
 		
 		JSeparator separator_7 = new JSeparator();
-		mnNewMenu_1.add(separator_7);
+		mn2.add(separator_7);
 		
-		JMenuItem mntmNewMenuItem_26 = new JMenuItem("New menu item");
-		mnNewMenu_1.add(mntmNewMenuItem_26);
+		JMenuItem mnEdit8 = new JMenuItem("Seleccionar todo");
+		mn2.add(mnEdit8);
 		
-		JMenuItem mntmNewMenuItem_27 = new JMenuItem("New menu item");
-		mnNewMenu_1.add(mntmNewMenuItem_27);
+		JMenuItem mnEdit9 = new JMenuItem("Seleccionar ninguno");
+		mn2.add(mnEdit9);
 		
 		JSeparator separator_8 = new JSeparator();
-		mnNewMenu_1.add(separator_8);
+		mn2.add(separator_8);
 		
-		JMenuItem mntmNewMenuItem_28 = new JMenuItem("New menu item");
-		mnNewMenu_1.add(mntmNewMenuItem_28);
+		JMenuItem mnEdit10 = new JMenuItem("Preferencias...");
+		mn2.add(mnEdit10);
 		
-		JMenu mnNewMenu_2 = new JMenu("Photo");
-		menuBar.add(mnNewMenu_2);
+		JMenu mn3 = new JMenu("Fotos");
+		menuBar.add(mn3);
 		
-		JMenuItem mntmNewMenuItem_29 = new JMenuItem("New menu item");
-		mnNewMenu_2.add(mntmNewMenuItem_29);
+		JMenuItem mnFotos1 = new JMenuItem("Abrir en Reference View (Ver de referencia)");
+		mn3.add(mnFotos1);
 		
 		JSeparator separator_9 = new JSeparator();
-		mnNewMenu_2.add(separator_9);
+		mn3.add(separator_9);
 		
-		JMenuItem mntmNewMenuItem_30 = new JMenuItem("New menu item");
-		mnNewMenu_2.add(mntmNewMenuItem_30);
+		JMenuItem mnFotos2 = new JMenuItem("Convertir a DNG...");
+		mn3.add(mnFotos2);
 		
 		JSeparator separator_10 = new JSeparator();
-		mnNewMenu_2.add(separator_10);
+		mn3.add(separator_10);
 		
-		JMenuItem mntmNewMenuItem_31 = new JMenuItem("New menu item");
-		mnNewMenu_2.add(mntmNewMenuItem_31);
+		JMenuItem mnFotos3 = new JMenuItem("Ajuste automático de tono");
+		mn3.add(mnFotos3);
 		
-		JMenuItem mntmNewMenuItem_32 = new JMenuItem("New menu item");
-		mnNewMenu_2.add(mntmNewMenuItem_32);
+		JMenuItem mnFotos4 = new JMenuItem("Ajuste automático de balance de blancos");
+		mn3.add(mnFotos4);
 		
 		JSeparator separator_11 = new JSeparator();
-		mnNewMenu_2.add(separator_11);
+		mn3.add(separator_11);
 		
-		JMenuItem mntmNewMenuItem_33 = new JMenuItem("New menu item");
-		mnNewMenu_2.add(mntmNewMenuItem_33);
+		JMenuItem mnFotos5 = new JMenuItem("Configuración de desarrollo");
+		mn3.add(mnFotos5);
 		
-		JMenuItem menuItem = new JMenuItem("New menu item");
-		mnNewMenu_2.add(menuItem);
+		JMenuItem mnFotos6 = new JMenuItem("Copiar configuración de desarrollo...");
+		mn3.add(mnFotos6);
 		
-		JMenuItem mntmNewMenuItem_34 = new JMenuItem("New menu item");
-		mnNewMenu_2.add(mntmNewMenuItem_34);
+		JMenuItem mnFotos7 = new JMenuItem("Pegar configuración de desarrollo");
+		mn3.add(mnFotos7);
 		
-		JMenuItem mntmNewMenuItem_35 = new JMenuItem("New menu item");
-		mnNewMenu_2.add(mntmNewMenuItem_35);
+		JMenuItem mnFotos8 = new JMenuItem("Pegar configuración de la foto anterior");
+		mn3.add(mnFotos8);
 		
 		JSeparator separator_12 = new JSeparator();
-		mnNewMenu_2.add(separator_12);
+		mn3.add(separator_12);
 		
-		JMenuItem mntmNewMenuItem_36 = new JMenuItem("New menu item");
-		mnNewMenu_2.add(mntmNewMenuItem_36);
+		JMenuItem mnFotos9 = new JMenuItem("Restablecer");
+		mn3.add(mnFotos9);
 		
-		JMenuItem mntmNewMenuItem_37 = new JMenuItem("New menu item");
-		mnNewMenu_2.add(mntmNewMenuItem_37);
+		JMenuItem mnFotos10 = new JMenuItem("Sincronizar configuración...");
+		mn3.add(mnFotos10);
 		
-		JMenuItem mntmNewMenuItem_38 = new JMenuItem("New menu item");
-		mnNewMenu_2.add(mntmNewMenuItem_38);
+		JMenuItem mnFotos11 = new JMenuItem("Sincronizar configuración automáticamente");
+		mn3.add(mnFotos11);
 		
 		JSeparator separator_13 = new JSeparator();
-		mnNewMenu_2.add(separator_13);
+		mn3.add(separator_13);
 		
-		JMenuItem mntmNewMenuItem_39 = new JMenuItem("New menu item");
-		mnNewMenu_2.add(mntmNewMenuItem_39);
+		JMenuItem mnFotos12 = new JMenuItem("Eliminar fotos marcadas con rechazado");
+		mn3.add(mnFotos12);
 		
 		JSeparator separator_14 = new JSeparator();
-		mnNewMenu_2.add(separator_14);
+		mn3.add(separator_14);
 		
-		JMenuItem mntmNewMenuItem_40 = new JMenuItem("New menu item");
-		mnNewMenu_2.add(mntmNewMenuItem_40);
+		JMenuItem mnFotos13 = new JMenuItem("Crear copia virtual");
+		mn3.add(mnFotos13);
 		
 		JSeparator separator_15 = new JSeparator();
-		mnNewMenu_2.add(separator_15);
+		mn3.add(separator_15);
 		
-		JMenuItem mntmNewMenuItem_41 = new JMenuItem("New menu item");
-		mnNewMenu_2.add(mntmNewMenuItem_41);
+		JMenuItem mnFotos14 = new JMenuItem("Establecer etiqueta de color");
+		mn3.add(mnFotos14);
 		
-		JMenuItem mntmNewMenuItem_42 = new JMenuItem("New menu item");
-		mnNewMenu_2.add(mntmNewMenuItem_42);
+		JMenuItem mnFotos15 = new JMenuItem("Establecer calificación de estrellas");
+		mn3.add(mnFotos15);
 		
-		JMenuItem mntmNewMenuItem_43 = new JMenuItem("New menu item");
-		mnNewMenu_2.add(mntmNewMenuItem_43);
+		JMenuItem mnFotos16 = new JMenuItem("Establecer bandera");
+		mn3.add(mnFotos16);
 		
 		JSeparator separator_16 = new JSeparator();
-		mnNewMenu_2.add(separator_16);
+		mn3.add(separator_16);
 		
-		JMenuItem mntmNewMenuItem_44 = new JMenuItem("New menu item");
-		mnNewMenu_2.add(mntmNewMenuItem_44);
+		JMenuItem mnFotos17 = new JMenuItem("Aumentar metadatos");
+		mn3.add(mnFotos17);
 		
-		JMenuItem mntmNewMenuItem_45 = new JMenuItem("New menu item");
-		mnNewMenu_2.add(mntmNewMenuItem_45);
+		JMenuItem mnFotos18 = new JMenuItem("Guardar metadatos en el archivo");
+		mn3.add(mnFotos18);
 		
-		JMenuItem mntmNewMenuItem_46 = new JMenuItem("New menu item");
-		mnNewMenu_2.add(mntmNewMenuItem_46);
+		JMenuItem mnFotos19 = new JMenuItem("Actualizar la ubicación de las fotos");
+		mn3.add(mnFotos19);
 		
 		JSeparator separator_17 = new JSeparator();
-		mnNewMenu_2.add(separator_17);
+		mn3.add(separator_17);
 		
-		JMenuItem mntmNewMenuItem_47 = new JMenuItem("New menu item");
-		mnNewMenu_2.add(mntmNewMenuItem_47);
+		JMenuItem mnFotos20 = new JMenuItem("Voltear imagen");
+		mn3.add(mnFotos20);
 		
-		JMenuItem mntmNewMenuItem_48 = new JMenuItem("New menu item");
-		mnNewMenu_2.add(mntmNewMenuItem_48);
+		JMenuItem mnFotos21 = new JMenuItem("Girar a la derecha (sentido horario)");
+		mn3.add(mnFotos21);
 		
-		JMenuItem mntmNewMenuItem_49 = new JMenuItem("New menu item");
-		mnNewMenu_2.add(mntmNewMenuItem_49);
+		JMenuItem mnFotos22 = new JMenuItem("Girar a la izquierda (sentido antihorario)");
+		mn3.add(mnFotos22);
 		
 		JMenu mnNewMenu_3 = new JMenu("Settings");
 		menuBar.add(mnNewMenu_3);
