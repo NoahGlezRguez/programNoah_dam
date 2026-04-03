@@ -15,6 +15,13 @@ import javax.swing.JSeparator;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JToolBar;
 import javax.swing.SwingConstants;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JToggleButton;
+import javax.swing.JScrollBar;
+import javax.swing.border.LineBorder;
+import javax.swing.border.CompoundBorder;
+import javax.swing.JScrollPane;
 
 public class VntPrincipal extends JFrame {
 
@@ -27,7 +34,7 @@ public class VntPrincipal extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(VntPrincipal.class.getResource("/modelo/Screenshot from 2026-04-02 20-14-29.png")));
 		setTitle("Lightroom 4 Catalog - Adobe Photoshop Lightroom - Develop");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 1126, 681);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -42,7 +49,7 @@ public class VntPrincipal extends JFrame {
 		pnlMnBar.setLayout(new BorderLayout(0, 0));
 		
 		JMenuBar menuBar_sup = new JMenuBar();
-		pnlMnBar.add(menuBar_sup);
+		pnlMnBar.add(menuBar_sup, BorderLayout.WEST);
 		
 		JMenu mn1_archi = new JMenu("Archivo");
 		menuBar_sup.add(mn1_archi);
@@ -616,6 +623,14 @@ public class VntPrincipal extends JFrame {
 		
 		JPanel pnlCabecera = new JPanel();
 		pnlSuperior.add(pnlCabecera, BorderLayout.SOUTH);
+		pnlCabecera.setLayout(new BorderLayout(0, 0));
+		
+		JPanel flechaSup = new JPanel();
+		flechaSup.setBackground(Color.BLACK);
+		pnlCabecera.add(flechaSup, BorderLayout.NORTH);
+		
+		JPanel pnlSupTmp = new JPanel();
+		pnlCabecera.add(pnlSupTmp, BorderLayout.SOUTH);
 		
 		JPanel pnlCentral = new JPanel();
 		contentPane.add(pnlCentral, BorderLayout.CENTER);
@@ -624,22 +639,84 @@ public class VntPrincipal extends JFrame {
 		contentPane.add(pnlIzquierdo, BorderLayout.WEST);
 		pnlIzquierdo.setLayout(new BorderLayout(0, 0));
 		
-		JPanel pnlPermanente = new JPanel();
-		pnlIzquierdo.add(pnlPermanente, BorderLayout.WEST);
+		JPanel flechaIzq = new JPanel();
+		flechaIzq.setBackground(Color.BLACK);
+		pnlIzquierdo.add(flechaIzq, BorderLayout.WEST);
 		
-		JPanel pnlTemporal = new JPanel();
-		pnlIzquierdo.add(pnlTemporal, BorderLayout.EAST);
+		JPanel pnlIzqTmp = new JPanel();
+		pnlIzquierdo.add(pnlIzqTmp, BorderLayout.EAST);
+		pnlIzqTmp.setLayout(new BoxLayout(pnlIzqTmp, BoxLayout.Y_AXIS));
 		
-		JToolBar tlbNavegador = new JToolBar();
-		tlbNavegador.setOrientation(SwingConstants.VERTICAL);
-		pnlTemporal.add(tlbNavegador);
+		JPanel pnlNav = new JPanel();
+		pnlNav.setBackground(Color.DARK_GRAY);
+		pnlIzqTmp.add(pnlNav);
+		
+		JPanel imgPeq = new JPanel();
+		imgPeq.setBorder(new CompoundBorder(new EmptyBorder(4, 4, 4, 4), new LineBorder(new Color(0, 0, 0))));
+		imgPeq.setBackground(Color.DARK_GRAY);
+		pnlIzqTmp.add(imgPeq);
+		
+		JPanel pnlPresets = new JPanel();
+		pnlPresets.setBackground(Color.DARK_GRAY);
+		pnlIzqTmp.add(pnlPresets);
+		
+		JPanel menuPresets = new JPanel();
+		menuPresets.setBorder(new CompoundBorder(new EmptyBorder(5, 5, 5, 5), new LineBorder(new Color(0, 0, 0))));
+		menuPresets.setBackground(Color.GRAY);
+		pnlIzqTmp.add(menuPresets);
+		
+		JPanel pnlSnapshots = new JPanel();
+		pnlSnapshots.setBackground(Color.DARK_GRAY);
+		pnlIzqTmp.add(pnlSnapshots);
+		
+		JPanel pnlBotonesIzq = new JPanel();
+		FlowLayout flowLayout = (FlowLayout) pnlBotonesIzq.getLayout();
+		pnlBotonesIzq.setBackground(Color.DARK_GRAY);
+		pnlIzqTmp.add(pnlBotonesIzq);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.setVerticalAlignment(SwingConstants.BOTTOM);
+		pnlBotonesIzq.add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("New button");
+		btnNewButton_1.setVerticalAlignment(SwingConstants.BOTTOM);
+		pnlBotonesIzq.add(btnNewButton_1);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		pnlIzquierdo.add(scrollPane, BorderLayout.CENTER);
 		
 		JPanel pnlDerecho = new JPanel();
 		contentPane.add(pnlDerecho, BorderLayout.EAST);
+		pnlDerecho.setLayout(new BorderLayout(0, 0));
+		
+		JPanel flechaDer = new JPanel();
+		flechaDer.setBackground(Color.BLACK);
+		pnlDerecho.add(flechaDer, BorderLayout.EAST);
+		
+		JScrollBar scrollBar = new JScrollBar();
+		scrollBar.setBackground(Color.BLACK);
+		scrollBar.setForeground(Color.BLACK);
+		pnlDerecho.add(scrollBar, BorderLayout.CENTER);
+		
+		JPanel pnlDerTmp = new JPanel();
+		pnlDerecho.add(pnlDerTmp, BorderLayout.WEST);
 		
 		JPanel pnlInferior = new JPanel();
 		contentPane.add(pnlInferior, BorderLayout.SOUTH);
+		pnlInferior.setLayout(new BorderLayout(0, 0));
+		
+		JPanel flechaInf = new JPanel();
+		flechaInf.setBackground(Color.BLACK);
+		pnlInferior.add(flechaInf, BorderLayout.SOUTH);
+		
+		JScrollBar scrollBar_1 = new JScrollBar();
+		scrollBar_1.setForeground(Color.BLACK);
+		scrollBar_1.setBackground(Color.BLACK);
+		scrollBar_1.setOrientation(JScrollBar.HORIZONTAL);
+		pnlInferior.add(scrollBar_1, BorderLayout.CENTER);
+		
+		JPanel pnlInfTmp = new JPanel();
+		pnlInferior.add(pnlInfTmp, BorderLayout.NORTH);
 
 	}
-
 }
