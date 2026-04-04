@@ -22,6 +22,12 @@ import javax.swing.JScrollBar;
 import javax.swing.border.LineBorder;
 import javax.swing.border.CompoundBorder;
 import javax.swing.JScrollPane;
+import javax.swing.ScrollPaneConstants;
+import java.awt.ComponentOrientation;
+import javax.swing.JLabel;
+import javax.swing.JComboBox;
+import javax.swing.JSpinner;
+import java.awt.Dimension;
 
 public class VntPrincipal extends JFrame {
 
@@ -644,12 +650,30 @@ public class VntPrincipal extends JFrame {
 		pnlIzquierdo.add(flechaIzq, BorderLayout.WEST);
 		
 		JPanel pnlIzqTmp = new JPanel();
-		pnlIzquierdo.add(pnlIzqTmp, BorderLayout.EAST);
+		pnlIzqTmp.setForeground(Color.BLACK);
+		pnlIzqTmp.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		pnlIzqTmp.setBackground(Color.BLACK);
 		pnlIzqTmp.setLayout(new BoxLayout(pnlIzqTmp, BoxLayout.Y_AXIS));
 		
 		JPanel pnlNav = new JPanel();
+		pnlNav.setMaximumSize(new Dimension(32767, 50));
 		pnlNav.setBackground(Color.DARK_GRAY);
 		pnlIzqTmp.add(pnlNav);
+		
+		JButton btnNewButton_2 = new JButton("New button");
+		pnlNav.add(btnNewButton_2);
+		
+		JLabel lblNewLabel_1 = new JLabel("New label");
+		pnlNav.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		pnlNav.add(lblNewLabel);
+		
+		JComboBox comboBox = new JComboBox();
+		pnlNav.add(comboBox);
+		
+		JSpinner spinner = new JSpinner();
+		pnlNav.add(spinner);
 		
 		JPanel imgPeq = new JPanel();
 		imgPeq.setBorder(new CompoundBorder(new EmptyBorder(4, 4, 4, 4), new LineBorder(new Color(0, 0, 0))));
@@ -657,8 +681,19 @@ public class VntPrincipal extends JFrame {
 		pnlIzqTmp.add(imgPeq);
 		
 		JPanel pnlPresets = new JPanel();
+		pnlPresets.setMaximumSize(new Dimension(32767, 500));
 		pnlPresets.setBackground(Color.DARK_GRAY);
 		pnlIzqTmp.add(pnlPresets);
+		pnlPresets.setLayout(new BorderLayout(0, 0));
+		
+		JButton btnNewButton_3 = new JButton("New button");
+		pnlPresets.add(btnNewButton_3, BorderLayout.WEST);
+		
+		JLabel lblNewLabel_2 = new JLabel("New label");
+		pnlPresets.add(lblNewLabel_2, BorderLayout.CENTER);
+		
+		JButton btnNewButton_4 = new JButton("New button");
+		pnlPresets.add(btnNewButton_4, BorderLayout.EAST);
 		
 		JPanel menuPresets = new JPanel();
 		menuPresets.setBorder(new CompoundBorder(new EmptyBorder(5, 5, 5, 5), new LineBorder(new Color(0, 0, 0))));
@@ -682,8 +717,13 @@ public class VntPrincipal extends JFrame {
 		btnNewButton_1.setVerticalAlignment(SwingConstants.BOTTOM);
 		pnlBotonesIzq.add(btnNewButton_1);
 		
-		JScrollPane scrollPane = new JScrollPane();
-		pnlIzquierdo.add(scrollPane, BorderLayout.CENTER);
+		JScrollPane scrollPane = new JScrollPane(pnlIzqTmp);
+		scrollPane.setForeground(Color.BLACK);
+		scrollPane.setBackground(Color.BLACK);
+		scrollPane.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		pnlIzquierdo.add(scrollPane, BorderLayout.EAST);
 		
 		JPanel pnlDerecho = new JPanel();
 		contentPane.add(pnlDerecho, BorderLayout.EAST);
