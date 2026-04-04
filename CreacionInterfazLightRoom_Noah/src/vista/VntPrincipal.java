@@ -28,6 +28,7 @@ import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
 import java.awt.Dimension;
+import java.awt.Rectangle;
 
 public class VntPrincipal extends JFrame {
 
@@ -656,20 +657,34 @@ public class VntPrincipal extends JFrame {
 		pnlIzqTmp.setLayout(new BoxLayout(pnlIzqTmp, BoxLayout.Y_AXIS));
 		
 		JPanel pnlNav = new JPanel();
+		pnlNav.setBorder(new EmptyBorder(0, 2, 0, 10));
 		pnlNav.setMaximumSize(new Dimension(32767, 50));
 		pnlNav.setBackground(Color.DARK_GRAY);
 		pnlIzqTmp.add(pnlNav);
 		
-		JButton btnNewButton_2 = new JButton("New button");
-		pnlNav.add(btnNewButton_2);
+		JButton btnFleNav = new JButton("▼");
+		btnFleNav.setHorizontalTextPosition(SwingConstants.LEADING);
+		btnFleNav.setHorizontalAlignment(SwingConstants.LEFT);
+		btnFleNav.setBorder(null);
+		btnFleNav.setForeground(Color.LIGHT_GRAY);
+		btnFleNav.setBackground(Color.DARK_GRAY);
+		pnlNav.add(btnFleNav);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		pnlNav.add(lblNewLabel_1);
+		JLabel lblNav = new JLabel("     Navigator         ");
+		lblNav.setBounds(new Rectangle(0, 0, 10, 0));
+		lblNav.setForeground(Color.LIGHT_GRAY);
+		pnlNav.add(lblNav);
 		
-		JLabel lblNewLabel = new JLabel("New label");
-		pnlNav.add(lblNewLabel);
+		JLabel lblFit = new JLabel("FIT     ");
+		lblFit.setForeground(Color.LIGHT_GRAY);
+		pnlNav.add(lblFit);
+		
+		JLabel lblFill = new JLabel("FILL    ");
+		lblFill.setForeground(Color.LIGHT_GRAY);
+		pnlNav.add(lblFill);
 		
 		JComboBox comboBox = new JComboBox();
+		comboBox.setBackground(Color.DARK_GRAY);
 		pnlNav.add(comboBox);
 		
 		JSpinner spinner = new JSpinner();
