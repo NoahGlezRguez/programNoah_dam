@@ -43,6 +43,7 @@ public class VntPrincipal extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1126, 681);
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.BLACK);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
@@ -52,6 +53,7 @@ public class VntPrincipal extends JFrame {
 		pnlSuperior.setLayout(new BorderLayout(0, 0));
 		
 		JPanel pnlMnBar = new JPanel();
+		pnlMnBar.setBackground(Color.WHITE);
 		pnlSuperior.add(pnlMnBar, BorderLayout.NORTH);
 		pnlMnBar.setLayout(new BorderLayout(0, 0));
 		
@@ -59,6 +61,10 @@ public class VntPrincipal extends JFrame {
 		pnlMnBar.add(menuBar_sup, BorderLayout.WEST);
 		
 		JMenu mn1_archi = new JMenu("Archivo");
+		mn1_archi.setOpaque(true);
+		mn1_archi.setBorderPainted(false);
+		mn1_archi.setBackground(Color.WHITE);
+		mn1_archi.setBorder(null);
 		menuBar_sup.add(mn1_archi);
 		
 		JMenuItem mnFile1 = new JMenuItem("Nuevo catálogo...");
@@ -134,6 +140,8 @@ public class VntPrincipal extends JFrame {
 		mn1_archi.add(mnFile19);
 		
 		JMenu mn2_edit = new JMenu("Edición");
+		mn2_edit.setBackground(Color.WHITE);
+		mn2_edit.setOpaque(true);
 		menuBar_sup.add(mn2_edit);
 		
 		JMenuItem mnEdit1 = new JMenuItem("Deshacer");
@@ -179,6 +187,8 @@ public class VntPrincipal extends JFrame {
 		mn2_edit.add(mnEdit10);
 		
 		JMenu mn3_fotos = new JMenu("Fotos");
+		mn3_fotos.setBackground(Color.WHITE);
+		mn3_fotos.setOpaque(true);
 		menuBar_sup.add(mn3_fotos);
 		
 		JMenuItem mnFotos1 = new JMenuItem("Abrir en Reference View (Ver de referencia)");
@@ -275,6 +285,8 @@ public class VntPrincipal extends JFrame {
 		mn3_fotos.add(mnFotos22);
 		
 		JMenu mn4_config = new JMenu("Ajustes");
+		mn4_config.setBackground(Color.WHITE);
+		mn4_config.setOpaque(true);
 		menuBar_sup.add(mn4_config);
 		
 		JMenuItem mnAjustes1 = new JMenuItem("Copiar ajustes de revelado...");
@@ -332,6 +344,8 @@ public class VntPrincipal extends JFrame {
 		mn4_config.add(mnAjustes10);
 		
 		JMenu mn5_herram = new JMenu("Herramientas");
+		mn5_herram.setBackground(Color.WHITE);
+		mn5_herram.setOpaque(true);
 		menuBar_sup.add(mn5_herram);
 		
 		JMenuItem mnHerra1 = new JMenuItem("Recortar y enderezar");
@@ -356,6 +370,8 @@ public class VntPrincipal extends JFrame {
 		mn5_herram.add(mnHerra7);
 		
 		JMenu mn6_Ver = new JMenu("Ver");
+		mn6_Ver.setBackground(Color.WHITE);
+		mn6_Ver.setOpaque(true);
 		menuBar_sup.add(mn6_Ver);
 		
 		JMenuItem mnVer1 = new JMenuItem("Vista de ampliación");
@@ -479,6 +495,8 @@ public class VntPrincipal extends JFrame {
 		mnVer_19_submn3.add(mnVer_submn3_ckbox1);
 		
 		JMenu mn7_Ventana = new JMenu("Window");
+		mn7_Ventana.setBackground(Color.WHITE);
+		mn7_Ventana.setOpaque(true);
 		menuBar_sup.add(mn7_Ventana);
 		
 		JMenuItem mnVentana1 = new JMenuItem("Nueva ventana de fotos");
@@ -590,6 +608,8 @@ public class VntPrincipal extends JFrame {
 		mn7_Ventana.add(mnVentana18);
 		
 		JMenu mn8_Ayuda = new JMenu("Ayuda");
+		mn8_Ayuda.setBackground(Color.WHITE);
+		mn8_Ayuda.setOpaque(true);
 		menuBar_sup.add(mn8_Ayuda);
 		
 		JMenuItem mnAyuda1 = new JMenuItem("Ayuda de Lightroom Classic");
@@ -629,6 +649,7 @@ public class VntPrincipal extends JFrame {
 		mn8_Ayuda.add(mnAyuda7);
 		
 		JPanel pnlCabecera = new JPanel();
+		pnlCabecera.setBackground(Color.BLACK);
 		pnlSuperior.add(pnlCabecera, BorderLayout.SOUTH);
 		pnlCabecera.setLayout(new BorderLayout(0, 0));
 		
@@ -637,12 +658,15 @@ public class VntPrincipal extends JFrame {
 		pnlCabecera.add(flechaSup, BorderLayout.NORTH);
 		
 		JPanel pnlSupTmp = new JPanel();
+		pnlSupTmp.setBackground(Color.BLACK);
 		pnlCabecera.add(pnlSupTmp, BorderLayout.SOUTH);
 		
 		JPanel pnlCentral = new JPanel();
+		pnlCentral.setBackground(Color.DARK_GRAY);
 		contentPane.add(pnlCentral, BorderLayout.CENTER);
 		
 		JPanel pnlIzquierdo = new JPanel();
+		pnlIzquierdo.setBorder(null);
 		contentPane.add(pnlIzquierdo, BorderLayout.WEST);
 		pnlIzquierdo.setLayout(new BorderLayout(0, 0));
 		
@@ -733,6 +757,7 @@ public class VntPrincipal extends JFrame {
 		pnlBotonesIzq.add(btnNewButton_1);
 		
 		JScrollPane scrollPane = new JScrollPane(pnlIzqTmp);
+		scrollPane.setBorder(null);
 		scrollPane.setForeground(Color.BLACK);
 		scrollPane.setBackground(Color.BLACK);
 		scrollPane.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
@@ -754,6 +779,7 @@ public class VntPrincipal extends JFrame {
 		pnlDerecho.add(scrollBar, BorderLayout.CENTER);
 		
 		JPanel pnlDerTmp = new JPanel();
+		pnlDerTmp.setBackground(Color.DARK_GRAY);
 		pnlDerecho.add(pnlDerTmp, BorderLayout.WEST);
 		
 		JPanel pnlInferior = new JPanel();
@@ -771,6 +797,7 @@ public class VntPrincipal extends JFrame {
 		pnlInferior.add(scrollBar_1, BorderLayout.CENTER);
 		
 		JPanel pnlInfTmp = new JPanel();
+		pnlInfTmp.setBackground(Color.BLACK);
 		pnlInferior.add(pnlInfTmp, BorderLayout.NORTH);
 
 	}
