@@ -77,6 +77,7 @@ public class Agenda {
 		String nombre = null;
 		boolean esCorrecto = false;
 		int idx;
+		CPersona persona;
 		
 		do {
 			System.out.print("Introduzca un nombre: ");
@@ -91,7 +92,9 @@ public class Agenda {
 		
 		if (idx != -1) {
 			System.out.println("Nombre encontrado:");
-			listatfnos.registro(idx);
+			persona = listatfnos.registro(idx);
+			System.out.println(persona.toString());
+			;
 		}
 	}
 	
@@ -118,7 +121,6 @@ public class Agenda {
 		}
 		
 		persona = new CPersona(datos[0], datos[1], datos[2]);
-		
 		listatfnos.anadir(persona);
 	}
 	

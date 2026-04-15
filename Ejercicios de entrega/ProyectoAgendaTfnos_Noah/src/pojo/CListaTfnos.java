@@ -71,7 +71,7 @@ public class CListaTfnos {
 	public CPersona registro(int i) {
 		CPersona persona = null;
 		
-		if (listaPersonas.isEmpty() && i < listaPersonas.size()) {
+		if (!listaPersonas.isEmpty() && i < listaPersonas.size()) {
 			persona = listaPersonas.get(i);
 		}
 		else {
