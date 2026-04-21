@@ -33,6 +33,11 @@ public class Agenda {
 		} while (opc != 5);
 	}
 	
+	/**
+	 * muestra el menu de operaciones disponibles de la agenda,<br>
+	 * recoge y valida la opcion seleccionada por el usuario
+	 * @return
+	 */
 	private static int menu() {
 		
 		int opc = -1;
@@ -61,6 +66,9 @@ public class Agenda {
 		return (opc);
 	}
 	
+	/**
+	 * imprime el menu por pantalla
+	 */
 	private static void mostrarMenu() {
 		String menu = """
 				1.- Buscar
@@ -73,6 +81,10 @@ public class Agenda {
 		System.out.print(menu);
 	}
 
+	/**
+	 * se busca un contacto con el nombre ingresado por el usuario
+	 * @param listatfnos - listado de telefonos
+	 */
 	public static void buscar(CListaTfnos listatfnos) {
 		String nombre = null;
 		boolean esCorrecto = false;
@@ -98,10 +110,18 @@ public class Agenda {
 		}
 	}
 	
+	/**
+	 * imprime por pantalla el listado de contactos que tiene la agenda
+	 * @param listatfnos
+	 */
 	public static void mostrarAgenda(CListaTfnos listatfnos) {
 		listatfnos.mostrarLista();
 	}
 	
+	/**
+	 * Agrega un nuevo contacto a la agenda
+	 * @param listatfnos - la agenda
+	 */
 	public static void anadir(CListaTfnos listatfnos) {
 		
 		CPersona persona;
@@ -124,6 +144,11 @@ public class Agenda {
 		listatfnos.anadir(persona);
 	}
 	
+	/**
+	 * Pide al usuario introducir un nº de teléfono y si existe en la agenda <br>
+	 * lo elimina. En caso contrario, no hace nada.
+	 * @param listatfnos
+	 */
 	public static void eliminar(CListaTfnos listatfnos) {
 		String tfno = null;
 		boolean esCorrecto = false;
