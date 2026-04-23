@@ -12,6 +12,9 @@ public class Agenda {
 		int opc;
 		CListaTfnos listatfnos = new CListaTfnos();
 		
+		ProgramaAgenda frame = new ProgramaAgenda(listatfnos);
+		frame.setVisible(true);
+		
 		do {
 			opc = menu();
 			
