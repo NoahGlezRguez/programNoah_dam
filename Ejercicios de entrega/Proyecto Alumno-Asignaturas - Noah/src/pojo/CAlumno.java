@@ -3,12 +3,14 @@ package pojo;
 import java.util.ArrayList;
 
 public class CAlumno {
+	
 	private String DNI;
 	private String nombre;
 	private String direccion;
 	private ArrayList<CAsignatura> listaAsignaturas = null;
 	
 	public CAlumno(String dNI, String nombre, String direccion) {
+		
 		DNI = dNI;
 		this.nombre = nombre;
 		this.direccion = direccion;
@@ -16,6 +18,7 @@ public class CAlumno {
 	}
 	
 	public CAlumno(CAlumno alumno) {
+		
 		this.DNI = alumno.getDNI();
 		this.nombre = alumno.getNombre();
 		this.direccion =  alumno.getDireccion();
@@ -75,25 +78,57 @@ public class CAlumno {
 	
 	public double obtenerNotaMedia() {
 		double media = 0.00;
+		double totalAsig = 0;
 		
 		for (int i = 0; i < listaAsignaturas.size(); i++) {
-			media += listaAsignaturas.get(i).getNota();
+			
+			if (listaAsignaturas.get(i).getNota() != -1) {
+				media += listaAsignaturas.get(i).getNota();
+				totalAsig++;
+			}
 		}
 		
+		media /= totalAsig;
+		
 		return (media);
+	}
+	
+	private String obtenerNotas() {
+		
+		String notas = "";
+		
+		for (int i = 0; i < listaAsignaturas.size(); i++) {
+			
+			if (listaAsignaturas.get(i).getNota() == -1) {
+				notas += listaAsignaturas.get(i).toString(true);
+			}
+			else {
+				notas += listaAsignaturas.get(i).toString(false);
+			}
+			
+		}
+		
+		return (notas);
 	}
 	
 	@Override
 	public String toString() {
 		
-		String notas = null;
+		String notas = obtenerNotas();
+		String output = null;
 		
-		String output = """
-				DNI: %s
+		if (numeroAsignaturas() > 0) {
+			output = """
+				DNI: %s Nombre: %s Dir: %s Nº asignaturas: %d
 				%s
 				Nota media: %s
-				""".formatted(this.DNI, obtenerNotas(), obtenerNotaMedia());
-		
+				""".formatted(this.DNI, this.nombre, this.direccion, numeroAsignaturas(), notas, obtenerNotaMedia());
+		}
+		else {
+			output = """
+				DNI: %s Nombre: %s Dir: %s SIN ASIGNATURAS
+				""".formatted(this.DNI, this.nombre, this.direccion);
+		}
 		
 		return (output);
 	}
