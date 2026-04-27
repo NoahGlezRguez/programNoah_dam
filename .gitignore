@@ -5,7 +5,6 @@
 
 # Archivos específicos de configuración (recursivos, para cualquier proyecto)
 .classpath
-.project
 desktop.ini
 
 # Carpetas completas en cualquier nivel (sin la barra inicial, importante)
